@@ -1,0 +1,36 @@
+apply plugin: 'com.android.dynamic-feature'
+apply from: "${rootProject.projectDir}/flavors.gradle"
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Release.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion Release.minSdkVersion
+        targetSdkVersion Release.targetSdkVersion
+        versionCode Release.versionCode
+        versionName Release.versionName
+    }
+
+    with flavorConfig
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(Modules.app)
+
+    //supportx
+    implementation Dependencies.kotlin
+    implementation Support.lifeCycleExtensions
+    implementation Support.materialComponent
+    implementation Support.appCompat
+    implementation Support.constraintLayout
+}
+

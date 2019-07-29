@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+
+apply from: "${rootProject.projectDir}/flavors.gradle"
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Release.compileSdkVersion
+    defaultConfig {
+        applicationId ApplicationId.id
+        minSdkVersion Release.minSdkVersion
+        targetSdkVersion Release.targetSdkVersion
+        versionCode Release.versionCode
+        versionName Release.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dynamicFeatures = [Modules.featureHome]
+
+    with flavorConfig
+}
+
+dependencies {
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api project(Modules.libCore)
+    api project(Modules.libNavigation)
+    api project(Modules.libUiComponent)
+
+    //support
+    implementation Dependencies.kotlin
+    implementation Support.appCompat
+    implementation Support.core
+    implementation Support.constraintLayout
+    implementation Support.materialComponent
+    api Arch.navigationFragment
+    api Arch.navigationKtx
+
+    //network
+    implementation Retrofit.retrofit
+    implementation Retrofit.moshiConverter
+    implementation Retrofit.adapterRxJava
+    implementation Retrofit.loggingInterceptor
+    implementation Json.moshiKotlin
+
+    //reactivex
+    implementation Reactivex.kotlin
+    implementation Reactivex.android
+
+    //Dagger2
+    implementation Dagger.dagger
+    kapt Dagger.daggerCompiler
+
+    //unittest
+    testImplementation TestLibs.junit
+    androidTestImplementation TestLibs.testRunner
+
+    //Logger
+    implementation Log.timber
+}

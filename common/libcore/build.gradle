@@ -1,0 +1,16 @@
+apply from: "$rootDir/common-android-library.gradle"
+apply from: "$rootDir/common-core-library.gradle"
+
+dependencies {
+    api project(Modules.libNetwork)
+
+    implementation Support.lifeCycleExtensions
+    implementation Support.core
+    implementation Support.appCompat
+    implementation Support.materialComponent
+
+    implementation Arch.paging
+
+    implementation Image.glide
+    kapt Image.glideCompiler
+}

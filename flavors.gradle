@@ -1,0 +1,33 @@
+ext.flavorConfig = {
+
+    flavorDimensions "environment"
+
+    productFlavors {
+        mock {
+            dimension "environment"
+            applicationIdSuffix ".mock"
+            resValue "string", "app_name", "DicodingMade(MOCK)"
+            //for testing only
+            buildConfigField 'String', 'API_KEY', '"b77a9c9af1b4434dcbbacdde72879e7c"'
+            buildConfigField 'String', 'API_BASE_URL', '"http://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'IMAGE_BASE_URL', '"https://image.tmdb.org/t/p/w500"'
+
+            //add actual base url below
+
+        }
+
+        development {
+            dimension "environment"
+            applicationIdSuffix ".dev"
+            resValue "string", "app_name", "DicodingMade(DEV)"
+            //for testing only
+            buildConfigField 'String', 'API_KEY', '"b77a9c9af1b4434dcbbacdde72879e7c"'
+            buildConfigField 'String', 'API_BASE_URL', '"http://api.themoviedb.org/3/"'
+            buildConfigField 'String', 'IMAGE_BASE_URL', '"https://image.tmdb.org/t/p/w500"'
+
+        }
+
+    }
+
+}
+
