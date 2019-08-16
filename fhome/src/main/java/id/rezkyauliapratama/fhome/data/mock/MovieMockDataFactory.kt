@@ -1,6 +1,6 @@
 package id.rezkyauliapratama.fhome.data.mock
 
-import id.rezkyauliapratama.fhome.R
+import id.innovation.libuicomponent.R
 import id.rezkyauliapratama.fhome.data.entity.ListMoviesDto
 import id.rezkyauliapratama.fhome.data.entity.MovieDtoBean
 

@@ -6,6 +6,7 @@ import id.innovation.libcore.di.FeatureScope
 import id.innovation.libcore.di.PresenterModule
 import id.innovation.libcore.di.ViewModelFactoryModule
 import id.rezkyauliapratama.fhome.ui.HomeActivity
+import id.rezkyauliapratama.fhome.ui.HomeFragment
 import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
 
 
@@ -28,5 +29,6 @@ interface FeatureComponent {
 
     fun inject(homeActivity: HomeActivity)
     fun inject(popularMovieFragment: PopularMovieFragment)
+    fun inject(homeFragment: HomeFragment)
 
 }
