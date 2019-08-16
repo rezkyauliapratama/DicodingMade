@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">lib_presenter</string>
+    <string name="app_name">lib_navigation</string>
+    <string name="image_of_poster">poster</string>
+
 </resources>
