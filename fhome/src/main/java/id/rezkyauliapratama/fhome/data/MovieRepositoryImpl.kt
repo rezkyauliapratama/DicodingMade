@@ -12,6 +12,13 @@ class MovieRepositoryImpl @Inject constructor(
     private val dataManager: DataManager
 ) : MovieRepository {
 
+    override fun getTvShows(): Single<List<MovieModel>> {
+        return dataManager.getTvShows()
+            .map {
+                it.mapToDomain()
+            }
+    }
+
     override fun getPopularMovies(): Single<List<MovieModel>> {
         return dataManager.getPopularMovies()
             .map {

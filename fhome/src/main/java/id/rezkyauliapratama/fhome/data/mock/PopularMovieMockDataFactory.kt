@@ -4,7 +4,7 @@ import id.innovation.libuicomponent.R
 import id.rezkyauliapratama.fhome.data.entity.ListMoviesDto
 import id.rezkyauliapratama.fhome.data.entity.MovieDtoBean
 
-class MovieMockDataFactory {
+class PopularMovieMockDataFactory {
     companion object {
 
         fun create(): ListMoviesDto =

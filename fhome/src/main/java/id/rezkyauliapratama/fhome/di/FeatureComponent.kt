@@ -8,6 +8,7 @@ import id.innovation.libcore.di.ViewModelFactoryModule
 import id.rezkyauliapratama.fhome.ui.HomeActivity
 import id.rezkyauliapratama.fhome.ui.HomeFragment
 import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
+import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
 
 
 @Component(
@@ -30,5 +31,6 @@ interface FeatureComponent {
     fun inject(homeActivity: HomeActivity)
     fun inject(popularMovieFragment: PopularMovieFragment)
     fun inject(homeFragment: HomeFragment)
+    fun inject(tvShowFragment: TvShowFragment)
 
 }

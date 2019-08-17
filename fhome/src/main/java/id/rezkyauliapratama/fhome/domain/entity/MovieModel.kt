@@ -1,6 +1,7 @@
 package id.rezkyauliapratama.fhome.domain.entity
 
 import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
+import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
 
 data class MovieModel(
     val id: Long,
@@ -21,5 +22,18 @@ fun MovieModel.mapToPopularMovie(): PopularMovieResult =
         overview = overview
     )
 
-fun List<MovieModel>.mapToPopularMovieList() : List<PopularMovieResult> = map { it.mapToPopularMovie() }
+fun List<MovieModel>.mapToPopularMovieList(): List<PopularMovieResult> = map { it.mapToPopularMovie() }
+
+
+fun MovieModel.mapToTvShows(): TvShowResult =
+    TvShowResult(
+        id = id,
+        title = title,
+        releaseDate = releaseDate,
+        posterPath = posterPath,
+        popularity = popularity,
+        overview = overview
+    )
+
+fun List<MovieModel>.mapToTvShowList(): List<TvShowResult> = map { it.mapToTvShows() }
 

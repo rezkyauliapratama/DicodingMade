@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
+import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
 
 class HomePagerAdapter(
         private val context: Context,
@@ -13,7 +14,7 @@ class HomePagerAdapter(
 ) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val fragments by lazy {
-        listOf(PopularMovieFragment(), Fragment())
+        listOf(PopularMovieFragment(), TvShowFragment())
     }
 
     companion object {

@@ -9,6 +9,10 @@ class DataManagerImpl(
     private val mockDataSource: MovieMockDataSource
 ) : DataManager {
 
+    override fun getTvShows(): Single<List<MovieDtoBean>> {
+        return mockDataSource.getTvShows()
+    }
+
     override fun getPopularMovies(): Single<List<MovieDtoBean>> {
         return mockDataSource.getPopularMovies()
     }

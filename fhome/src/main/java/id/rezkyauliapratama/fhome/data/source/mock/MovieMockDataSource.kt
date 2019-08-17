@@ -6,4 +6,5 @@ import io.reactivex.Single
 
 interface MovieMockDataSource {
     fun getPopularMovies(): Single<List<MovieDtoBean>>
+    fun getTvShows(): Single<List<MovieDtoBean>>
 }

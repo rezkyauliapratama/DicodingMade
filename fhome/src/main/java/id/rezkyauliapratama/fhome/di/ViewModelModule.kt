@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import id.innovation.libcore.di.ViewModelKey
 import id.rezkyauliapratama.fhome.ui.popularmovie.viewmodel.PopularMovieViewModel
+import id.rezkyauliapratama.fhome.ui.tvshow.viewmodel.TvShowViewModel
 
 @Module
 abstract class ViewModelModule {
@@ -14,5 +15,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(PopularMovieViewModel::class)
     abstract fun bindPopularViewModel(viewModel: PopularMovieViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TvShowViewModel::class)
+    abstract fun bindTvShowViewModel(viewModel: TvShowViewModel): ViewModel
 
 }
