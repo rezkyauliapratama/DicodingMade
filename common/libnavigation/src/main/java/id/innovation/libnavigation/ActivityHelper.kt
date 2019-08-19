@@ -25,15 +25,16 @@ import android.content.Intent
  * Helpers to start activities in a modularized world.
  */
 
-private const val PACKAGE_NAME = "id.innovation"
+private const val PACKAGE_NAME = "id.rezkyauliapratama"
 
 /**
  * Create an Intent with [Intent.ACTION_VIEW] to an [AddressableActivity].
  */
 fun intentTo(context: Context, addressableActivity: AddressableActivity): Intent {
     return Intent(Intent.ACTION_VIEW).setClassName(
-            context.packageName,
-            addressableActivity.className)
+        context.packageName,
+        addressableActivity.className
+    )
 }
 
 /**
@@ -53,13 +54,10 @@ interface AddressableActivity {
  */
 object Activities {
 
-    /**
-     * Example :
-     * MainActivity
-
-    object OnBoardingKyb : AddressableActivity {
-        override val className = "$PACKAGE_NAME.fonboardingkyb.presenter.submission.MainActivity"
+    object DetailMovie : AddressableActivity {
+        const val bundleKey = "data"
+        override val className = "$PACKAGE_NAME.fdetailmovie.ui.DetailMovieActivity"
     }
-    */
+
 
 }

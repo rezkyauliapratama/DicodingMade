@@ -4,6 +4,8 @@ import androidx.annotation.CallSuper
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import timber.log.Timber
+import kotlin.system.exitProcess
 
 abstract class BaseViewModel : ViewModel() {
 
@@ -15,14 +17,16 @@ abstract class BaseViewModel : ViewModel() {
      * @param multipleTimes (OPTIONAL) set it to true to make multiple call capability
      */
     @CallSuper
-    open fun loadPage(multipleTimes: Boolean? = false) {
+    open fun loadPage(multipleTimes: Boolean? = false) : Boolean {
         if (!isFirst && multipleTimes != true) {
-            return
+            return false
         }
+
         isFirst = false
+        return true
     }
 
-    protected val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
     protected fun Disposable.track() {
         compositeDisposable.add(this)

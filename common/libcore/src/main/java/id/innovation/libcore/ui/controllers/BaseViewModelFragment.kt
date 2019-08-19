@@ -45,7 +45,6 @@ abstract class BaseViewModelFragment<VIEWMODEL : BaseViewModel>
 
     override fun onStart() {
         super.onStart()
-        Timber.e("Onstart")
         viewModel.loadPage(isMultipleLoad())
     }
 

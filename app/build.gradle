@@ -28,9 +28,11 @@ android {
         }
     }
 
-    dynamicFeatures = [Modules.featureHome]
+    dynamicFeatures = [Modules.featureHome, Modules.featureDetailMovie]
 
     with flavorConfig
+
+
 }
 
 dependencies {
@@ -40,6 +42,7 @@ dependencies {
     api project(Modules.libCore)
     api project(Modules.libNavigation)
     api project(Modules.libUiComponent)
+    api project(Modules.libShareData)
 
     //support
     implementation Dependencies.kotlin

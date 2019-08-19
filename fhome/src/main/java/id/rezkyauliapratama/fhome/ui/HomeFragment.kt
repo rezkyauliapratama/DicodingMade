@@ -9,6 +9,7 @@ import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar.*
 import id.rezkyauliapratama.fhome.ui.pager.HomePagerAdapter
+import timber.log.Timber
 
 class HomeFragment : BaseFragment() {
 
@@ -31,10 +32,22 @@ class HomeFragment : BaseFragment() {
 
     override fun initViews() {
         super.initViews()
+        Timber.e("initview")
         tvTitle.setText(R2.string.home)
         vpContainer.adapter = homePagerAdapter
         tabLayout.setupWithViewPager(vpContainer)
     }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.e("onstart")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.e("onstop")
+    }
+
 
 
 }

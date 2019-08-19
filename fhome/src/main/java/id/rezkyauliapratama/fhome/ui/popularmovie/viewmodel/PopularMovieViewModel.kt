@@ -17,18 +17,20 @@ class PopularMovieViewModel @Inject constructor(
 
     internal val moviesList: SingleLiveEvent<Resource<List<PopularMovieResult>>> = SingleLiveEvent()
 
-    override fun loadPage(multipleTimes: Boolean?) {
-        super.loadPage(multipleTimes)
-        Timber.e("PopularViewModel loadpage")
-        moviesList.setLoading()
-        getPopularMovie.execute().subscribe(
-            {
-                moviesList.setSuccess(it)
-            },
-            {
-                moviesList.setError(it)
-            }
-        ).track()
+    override fun loadPage(multipleTimes: Boolean?) : Boolean {
+        if (super.loadPage(multipleTimes)){
+            Timber.e("PopularViewModel loadpage")
+            moviesList.setLoading()
+            getPopularMovie.execute().subscribe(
+                {
+                    moviesList.setSuccess(it)
+                },
+                {
+                    moviesList.setError(it)
+                }
+            ).track()
+        }
+        return super.loadPage(multipleTimes)
     }
 
 }

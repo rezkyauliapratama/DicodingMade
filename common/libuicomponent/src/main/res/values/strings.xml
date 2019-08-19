@@ -2,5 +2,6 @@
     <string name="app_name">lib_navigation</string>
     <string name="image_of_poster">poster</string>
     <string name="home">Beranda</string>
+    <string name="overview">Overview</string>
 
 </resources>

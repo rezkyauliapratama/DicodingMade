@@ -1,0 +1,11 @@
+apply from: "$rootDir/common-android-dynamic-feature.gradle"
+
+dependencies {
+
+    //image
+    implementation Image.glide
+    kapt Image.glideCompiler
+
+    kapt Dagger.daggerCompiler
+    implementation Arch.paging
+}

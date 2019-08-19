@@ -8,10 +8,13 @@ import id.innovation.libcore.ui.common.SafeObserver
 import id.innovation.libcore.ui.controllers.BaseViewModelFragment
 import id.innovation.libcore.ui.presenterstate.Resource
 import id.innovation.libcore.ui.presenterstate.ResourceState
+import id.innovation.libnavigation.Activities
+import id.innovation.libnavigation.intentTo
 import id.innovation.libuicomponent.common.ProgressDialogUtil
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
 import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
+import id.rezkyauliapratama.fhome.ui.entity.intoDetailMovie
 import id.rezkyauliapratama.fhome.ui.popularmovie.adapter.PopularMovieAdapter
 import id.rezkyauliapratama.fhome.ui.popularmovie.viewmodel.PopularMovieViewModel
 import kotlinx.android.synthetic.main.fragment_movie_list.*
@@ -49,15 +52,24 @@ class PopularMovieFragment : BaseViewModelFragment<PopularMovieViewModel>() {
 
     override fun initViews() {
         super.initViews()
-        adapter = PopularMovieAdapter()
+        adapter = PopularMovieAdapter(::onItemClick)
         rvPopularMovies.adapter = adapter
         rvPopularMovies.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    override fun onStart() {
-        super.onStart()
-        Timber.e("PopularMovieFragment")
+    private fun onItemClick(popularMovieResult: PopularMovieResult) {
+        val intent = intentTo(
+            requireContext(),
+            addressableActivity = Activities.DetailMovie
+        )
+
+        intent.putExtra(Activities.DetailMovie.bundleKey, popularMovieResult.intoDetailMovie())
+
+        startActivity(
+            intent
+        )
     }
+
     private fun handleStateResult(resource: Resource<List<PopularMovieResult>>) {
         when (resource.state) {
             ResourceState.LOADING -> {

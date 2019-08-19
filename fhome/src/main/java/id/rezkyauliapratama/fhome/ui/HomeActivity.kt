@@ -9,8 +9,6 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.e("HomeActivity", "testing")
-
         setContentView(R.layout.activity_home)
     }
 }

@@ -8,7 +8,9 @@ import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
 import kotlinx.android.synthetic.main.list_item_movie.view.*
 
-class PopularMovieAdapter: RecyclerView.Adapter<PopularMovieAdapter.ViewHolder>() {
+class PopularMovieAdapter(
+    private val onClick: (popularMovieResult: PopularMovieResult) -> Unit
+) : RecyclerView.Adapter<PopularMovieAdapter.ViewHolder>() {
 
     private val items: ArrayList<PopularMovieResult> = ArrayList()
 
@@ -30,16 +32,22 @@ class PopularMovieAdapter: RecyclerView.Adapter<PopularMovieAdapter.ViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindMovies(items[position])
+        holder.bindMovies(items[position], onClick)
     }
 
     class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bindMovies(popularMovieResult: PopularMovieResult) {
+        fun bindMovies(
+            popularMovieResult: PopularMovieResult,
+            onClick: (popularMovieResult: PopularMovieResult) -> Unit
+        ) {
             view.tvTitle.text = popularMovieResult.title
             view.tvScore.text = popularMovieResult.popularity.toString()
             view.ivPoster.setImageResource(popularMovieResult.posterPath)
 
+            view.setOnClickListener {
+                onClick.invoke(popularMovieResult)
+            }
         }
     }
 

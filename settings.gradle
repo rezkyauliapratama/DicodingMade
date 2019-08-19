@@ -1,7 +1,9 @@
 include Modules.featureHome
+include Modules.featureDetailMovie
 
 include Modules.app
 include Modules.libNetwork
 include Modules.libCore
 include Modules.libUiComponent
 include Modules.libNavigation
+include Modules.libShareData

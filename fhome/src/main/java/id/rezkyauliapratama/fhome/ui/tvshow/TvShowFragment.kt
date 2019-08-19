@@ -8,10 +8,13 @@ import id.innovation.libcore.ui.common.SafeObserver
 import id.innovation.libcore.ui.controllers.BaseViewModelFragment
 import id.innovation.libcore.ui.presenterstate.Resource
 import id.innovation.libcore.ui.presenterstate.ResourceState
+import id.innovation.libnavigation.Activities
+import id.innovation.libnavigation.intentTo
 import id.innovation.libuicomponent.common.ProgressDialogUtil
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
 import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
+import id.rezkyauliapratama.fhome.ui.entity.intoDetailMovie
 import id.rezkyauliapratama.fhome.ui.tvshow.adapter.TvShowAdapter
 import id.rezkyauliapratama.fhome.ui.tvshow.viewmodel.TvShowViewModel
 import kotlinx.android.synthetic.main.fragment_movie_list.*
@@ -49,14 +52,28 @@ class TvShowFragment : BaseViewModelFragment<TvShowViewModel>() {
 
     override fun initViews() {
         super.initViews()
-        adapter = TvShowAdapter()
+        adapter = TvShowAdapter(::onItemClick)
         rvPopularMovies.adapter = adapter
         rvPopularMovies.layoutManager = LinearLayoutManager(requireContext())
     }
 
+    private fun onItemClick(tvShowResult: TvShowResult) {
+        val intent = intentTo(
+            requireContext(),
+            addressableActivity = Activities.DetailMovie
+        )
+
+        intent.putExtra(Activities.DetailMovie.bundleKey, tvShowResult.intoDetailMovie())
+
+        startActivity(
+            intent
+        )
+
+    }
+
     override fun onStart() {
         super.onStart()
-        Timber.e("PopularMovieFragment")
+        Timber.e("TvShowFragment")
     }
 
     private fun handleStateResult(resource: Resource<List<TvShowResult>>) {

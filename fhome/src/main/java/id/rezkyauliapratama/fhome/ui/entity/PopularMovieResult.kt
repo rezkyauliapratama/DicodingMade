@@ -1,6 +1,7 @@
 package id.rezkyauliapratama.fhome.ui.entity
 
 import android.os.Parcelable
+import id.innovation.libsharedata.entity.DetailMovieResult
 import kotlinx.android.parcel.Parcelize
 
 
@@ -13,3 +14,12 @@ data class PopularMovieResult(
     val releaseDate: String,
     val overview: String
 ) : Parcelable
+
+fun PopularMovieResult.intoDetailMovie() = DetailMovieResult(
+    id = id,
+    title = title,
+    popularity = popularity,
+    posterPath = posterPath,
+    releaseDate = releaseDate,
+    overview = overview
+)

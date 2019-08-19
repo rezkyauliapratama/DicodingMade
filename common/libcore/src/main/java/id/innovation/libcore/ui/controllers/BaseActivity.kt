@@ -10,7 +10,7 @@ abstract class BaseActivity :
     AppCompatActivity() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var mViewModelFactory: ViewModelProvider.Factory
 
     abstract fun injectDagger()
     protected abstract fun getContentResource(): Int

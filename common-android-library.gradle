@@ -12,6 +12,10 @@ android {
         versionCode Release.versionCode
         versionName Release.versionName
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {

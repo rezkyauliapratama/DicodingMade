@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:dist="http://schemas.android.com/apk/distribution"
+          package="id.dicodingmade.fdetailmovie">
+    <dist:module
+            dist:onDemand="false"
+            dist:instant="false"
+            dist:title="@string/title_fdetailmovie">
+        <dist:fusing dist:include="true"/>
+    </dist:module>
+
+    <application
+            android:name="id.rezkyauliapratama.dicodingmade.App">
+        <activity
+                android:parentActivityName="id.rezkyauliapratama.dicodingmade.MainActivity"
+                android:name="id.rezkyauliapratama.fdetailmovie.ui.DetailMovieActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+
