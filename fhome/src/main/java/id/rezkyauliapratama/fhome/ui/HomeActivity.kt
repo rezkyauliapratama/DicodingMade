@@ -1,14 +1,25 @@
 package id.rezkyauliapratama.fhome.ui
 
-import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import id.innovation.libcore.di.CoreInjectHelper
+import id.innovation.libcore.di.PresenterModule
+import id.innovation.libcore.ui.controllers.BaseActivity
 import id.rezkyauliapratama.fhome.R
+import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
 
-class HomeActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+class HomeActivity : BaseActivity() {
+
+
+    override fun injectDagger() {
+        DaggerFeatureComponent
+            .builder()
+            .coreComponent(CoreInjectHelper.provideCoreComponent(applicationContext))
+            .presenterModule(PresenterModule(this))
+            .build()
+            .inject(this)
+    }
+
+    override fun getContentResource(): Int {
+        return R.layout.activity_home
     }
 }

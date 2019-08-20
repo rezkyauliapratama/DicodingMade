@@ -1,7 +1,9 @@
 package id.rezkyauliapratama.fhome.di
 
+import android.content.Context
 import dagger.Module
 import dagger.Provides
+import id.innovation.libcore.di.ActivityContext
 import id.rezkyauliapratama.fhome.data.DataManager
 import id.rezkyauliapratama.fhome.data.MovieRepositoryImpl
 import id.rezkyauliapratama.fhome.data.source.DataManagerImpl
@@ -13,8 +15,8 @@ import id.rezkyauliapratama.fhome.domain.repository.MovieRepository
 class RepositoryModule {
 
     @Provides
-    fun provideMockSource(): MovieMockDataSource{
-        return MovieMockDataSourceImpl()
+    fun provideMockSource(@ActivityContext context: Context): MovieMockDataSource{
+        return MovieMockDataSourceImpl(context)
     }
 
     @Provides

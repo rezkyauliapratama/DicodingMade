@@ -7,11 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
+import id.innovation.libcore.data.locale.LocaleManager
+
+
 
 abstract class BaseFragment : Fragment() {
 
@@ -56,5 +60,11 @@ abstract class BaseFragment : Fragment() {
     }
 
     protected fun Disposable.collect() = compositeDisposable.add(this)
+
+    protected fun showDialogFragment(dialogFragment: DialogFragment, tag: String) {
+        if (!dialogFragment.isAdded) {
+            dialogFragment.show(childFragmentManager, tag)
+        }
+    }
 
 }

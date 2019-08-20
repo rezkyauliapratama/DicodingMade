@@ -7,6 +7,7 @@ import id.innovation.libcore.di.PresenterModule
 import id.innovation.libcore.di.ViewModelFactoryModule
 import id.rezkyauliapratama.fhome.ui.HomeActivity
 import id.rezkyauliapratama.fhome.ui.HomeFragment
+import id.rezkyauliapratama.fhome.ui.bottomsheet.SettingBottomSheetDialog
 import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
 import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
 
@@ -32,5 +33,6 @@ interface FeatureComponent {
     fun inject(popularMovieFragment: PopularMovieFragment)
     fun inject(homeFragment: HomeFragment)
     fun inject(tvShowFragment: TvShowFragment)
+    fun inject(settingBottomSheetDialog: SettingBottomSheetDialog)
 
 }

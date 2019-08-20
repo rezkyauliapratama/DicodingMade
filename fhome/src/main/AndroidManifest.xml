@@ -3,7 +3,8 @@
 
     <application
             android:name="id.rezkyauliapratama.dicodingmade.App">
-        <activity android:name=".ui.HomeActivity">
+        <activity android:name=".ui.HomeActivity"
+                  android:configChanges="locale">
             <intent-filter>
                 <action android:name="action.home.open"/>
                 <action android:name="android.intent.action.VIEW"/>
