@@ -1,39 +1,31 @@
 package id.rezkyauliapratama.fhome.domain.entity
 
 import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
-import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
 
 data class MovieModel(
-    val id: Long,
-    val title: String,
+    val backdropPath: String?,
+    val genreIds: List<Int>,
+    val originalTitle: String,
     val popularity: Double,
     val overview: String,
-    val posterPath: Int,
-    val releaseDate: String
+    val posterPath: String?,
+    val releaseDate: String,
+    val video: Boolean,
+    val voteAverage: Double,
+    val voteCount: Int
 )
 
 fun MovieModel.mapToPopularMovie(): PopularMovieResult =
     PopularMovieResult(
-        id = id,
-        title = title,
+        genreIds = genreIds,
+        originalTitle = originalTitle,
+        voteCount = voteCount,
+        voteAverage = voteAverage,
         releaseDate = releaseDate,
         posterPath = posterPath,
-        popularity = popularity,
-        overview = overview
+        backdropPath = backdropPath,
+        popularity = popularity
     )
 
-fun List<MovieModel>.mapToPopularMovieList(): List<PopularMovieResult> = map { it.mapToPopularMovie() }
-
-
-fun MovieModel.mapToTvShows(): TvShowResult =
-    TvShowResult(
-        id = id,
-        title = title,
-        releaseDate = releaseDate,
-        posterPath = posterPath,
-        popularity = popularity,
-        overview = overview
-    )
-
-fun List<MovieModel>.mapToTvShowList(): List<TvShowResult> = map { it.mapToTvShows() }
-
+fun List<MovieModel>.mapToPopularMovieList(): List<PopularMovieResult> =
+    map { it.mapToPopularMovie() }

@@ -26,7 +26,7 @@ abstract class BaseViewModel : ViewModel() {
         return true
     }
 
-    private val compositeDisposable = CompositeDisposable()
+    val compositeDisposable = CompositeDisposable()
 
     protected fun Disposable.track() {
         compositeDisposable.add(this)

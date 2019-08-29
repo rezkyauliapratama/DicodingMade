@@ -3,21 +3,22 @@ package id.rezkyauliapratama.fhome.data.mock
 import android.content.Context
 import id.innovation.libuicomponent.R
 import id.rezkyauliapratama.fhome.data.entity.ListMoviesDto
-import id.rezkyauliapratama.fhome.data.entity.MovieDtoBean
+import id.rezkyauliapratama.fhome.data.entity.ListTvShowDto
+import id.rezkyauliapratama.fhome.data.entity.TvShowDtoBean
 
 class TvShowMockDataFactory {
     companion object {
 
-        fun create(context: Context): ListMoviesDto =
+        fun create(context: Context): ListTvShowDto =
             generateTvShows(context)
 
-        private fun generateTvShows(context: Context): ListMoviesDto {
-            return ListMoviesDto(moviesDto = generateTvShowsBean(context))
+        private fun generateTvShows(context: Context): ListTvShowDto {
+            return ListTvShowDto(generateTvShowsBean(context))
         }
 
-        private fun generateTvShowsBean(context: Context): List<MovieDtoBean> {
+        private fun generateTvShowsBean(context: Context): List<TvShowDtoBean> {
             return arrayListOf(
-                MovieDtoBean(
+                TvShowDtoBean(
                     id = 0,
                     posterPath = R.drawable.poster_arrow,
                     title = "Arrow",
@@ -25,7 +26,7 @@ class TvShowMockDataFactory {
                     releaseDate = "October 10, 2012",
                     overview = context.getString(R.string.tv_arrow)
                 ),
-                MovieDtoBean(
+                TvShowDtoBean(
                     id = 1,
                     posterPath = R.drawable.poster_doom_patrol,
                     title = "Doom Patrol",
@@ -33,7 +34,7 @@ class TvShowMockDataFactory {
                     releaseDate = "February 15, 2019",
                     overview = context.getString(R.string.tv_doom_patrol)
                 ),
-                MovieDtoBean(
+                TvShowDtoBean(
                     id = 2,
                     posterPath = R.drawable.poster_dragon_ball,
                     title = "Dragon Ball",
@@ -41,7 +42,7 @@ class TvShowMockDataFactory {
                     releaseDate = "February 26, 1986",
                     overview = context.getString(R.string.tv_dragon_ball)
                 ),
-                MovieDtoBean(
+                TvShowDtoBean(
                     id = 3,
                     posterPath = R.drawable.poster_fairytail,
                     title = "Fairy Tail",
@@ -49,7 +50,7 @@ class TvShowMockDataFactory {
                     releaseDate = "October 12, 2009",
                     overview = context.getString(R.string.tv_fairy_Tail)
                 ),
-                MovieDtoBean(
+                TvShowDtoBean(
                     id = 4,
                     posterPath = R.drawable.poster_family_guy,
                     title = "Family Guy",
@@ -57,7 +58,7 @@ class TvShowMockDataFactory {
                     releaseDate = "January 31, 1999",
                     overview = context.getString(R.string.tv_family_guy)
                 ),
-                MovieDtoBean(
+                TvShowDtoBean(
                     id = 5,
                     posterPath = R.drawable.poster_flash,
                     title = "The Flash",
@@ -65,7 +66,7 @@ class TvShowMockDataFactory {
                     releaseDate = "October 7, 2014",
                     overview = context.getString(R.string.tv_flash)
                 ),
-                MovieDtoBean(
+                TvShowDtoBean(
                     id = 6,
                     posterPath = R.drawable.poster_god,
                     title = "Game of Thrones",
@@ -73,7 +74,7 @@ class TvShowMockDataFactory {
                     releaseDate = "April 17, 2011",
                     overview = context.getString(R.string.tv_god)
                 ),
-                MovieDtoBean(
+                TvShowDtoBean(
                     id = 7,
                     posterPath = R.drawable.poster_gotham,
                     title = "Gotham",
@@ -81,7 +82,7 @@ class TvShowMockDataFactory {
                     releaseDate = "September 22, 2014",
                     overview = context.getString(R.string.tv_gotham)
                 ),
-                MovieDtoBean(
+                TvShowDtoBean(
                     id = 8,
                     posterPath = R.drawable.poster_grey_anatomy,
                     title = "Grey's Anatomy",
@@ -89,7 +90,7 @@ class TvShowMockDataFactory {
                     releaseDate = "March 27, 2005",
                     overview = context.getString(R.string.tv_grey_anatomy)
                 ),
-                MovieDtoBean(
+                TvShowDtoBean(
                     id = 9,
                     posterPath = R.drawable.poster_hanna,
                     title = "Hanna",

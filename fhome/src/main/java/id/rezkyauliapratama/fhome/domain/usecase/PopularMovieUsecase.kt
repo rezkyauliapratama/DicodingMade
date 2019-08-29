@@ -13,8 +13,13 @@ class PopularMovieUsecase @Inject constructor(
     errorTransformer: ErrorTransformer<List<PopularMovieResult>>
 ) : SingleUseCase<List<PopularMovieResult>>(errorTransformer) {
 
+    companion object {
+        const val pageNum: String = "pageNum"
+    }
+
     override fun buildUseCaseSingle(data: Map<String, Any?>): Single<List<PopularMovieResult>> {
-        return movieRepository.getPopularMovies().map { it.mapToPopularMovieList() }
+        val pageNumber: Int = data[pageNum] as Int
+        return movieRepository.getPopularMovies(pageNumber).map { it.mapToPopularMovieList() }
     }
 
 }
