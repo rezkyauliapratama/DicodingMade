@@ -10,14 +10,14 @@ import id.innovation.libcore.ui.presenterstate.ResourceState
 import id.innovation.libuicomponent.common.extension.loadImage
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
-import id.rezkyauliapratama.fhome.ui.popularmovie.adapter.entity.RowPopularMovieResult
+import id.rezkyauliapratama.fhome.ui.popularmovie.adapter.entity.RowMovieResult
 import kotlinx.android.synthetic.main.list_item_movie.view.*
 import kotlinx.android.synthetic.main.widget_progressbar.view.*
 import javax.inject.Inject
 import id.innovation.libuicomponent.R as R2
 
 class PopularMovieAdapter @Inject constructor(
-    private val rowPopularMovieResultFactory: RowPopularMovieResult.Factory
+    private val rowMovieResultFactory: RowMovieResult.Factory
 ) : PagedListAdapter<PopularMovieResult, RecyclerView.ViewHolder>(popularMoviesDiffCallback) {
 
     companion object {
@@ -73,7 +73,7 @@ class PopularMovieAdapter @Inject constructor(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == DATA_VIEW_TYPE && holder is PopularMovieViewHolder) {
             getItem(position)?.apply {
-                val rowPopularMovieResult = rowPopularMovieResultFactory.create(this)
+                val rowPopularMovieResult = rowMovieResultFactory.create(this)
                 holder.bind(rowPopularMovieResult)
             }
         } else
@@ -89,10 +89,19 @@ class PopularMovieAdapter @Inject constructor(
 
 class PopularMovieViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bind(popularMoveResult: RowPopularMovieResult) {
-        view.tvTitle.text = popularMoveResult.getOriginalTitle()
-        view.tvScore.text = popularMoveResult.getVoteAverage()
-        view.ivPoster.loadImage(popularMoveResult.getThumnailImage())
+    fun bind(moveResult: RowMovieResult) {
+        view.shimmer_view_container.startShimmer()
+        view.tvTitle.text = moveResult.getOriginalTitle()
+        view.tvScore.text = moveResult.getVoteAverage()
+        view.ivPoster.loadImage(moveResult.getThumnailImage(),
+            onLoad = {
+                view.shimmer_view_container.startShimmer()
+            },
+            onSuccess = {
+                view.shimmer_view_container.stopShimmer()
+            }
+        )
+
 
     }
 }

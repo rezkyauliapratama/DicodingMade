@@ -14,9 +14,8 @@ import javax.inject.Inject
 class MovieRepositoryImpl @Inject constructor(
     private val dataManager: DataManager
 ) : MovieRepository {
-
-    override fun getTvShows(): Single<List<TvShowModel>> {
-        return dataManager.getTvShows()
+    override fun getTvShows(pageNum: Int): Single<List<TvShowModel>> {
+        return dataManager.getTvShows(BuildConfig.API_KEY, pageNum)
             .map {
                 it.mapToTvShowDomain()
             }

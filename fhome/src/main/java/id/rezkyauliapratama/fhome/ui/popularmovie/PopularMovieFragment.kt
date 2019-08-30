@@ -60,7 +60,7 @@ class PopularMovieFragment : BaseViewModelFragment<PopularMovieViewModel>() {
 
     override fun initViews() {
         super.initViews()
-        val layoutManager: GridLayoutManager = GridLayoutManager(requireContext(), 2)
+        val layoutManager = GridLayoutManager(requireContext(), 2)
         val lookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return when (adapter.getItemViewType(position)) {

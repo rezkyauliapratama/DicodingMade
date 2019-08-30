@@ -6,5 +6,5 @@ import io.reactivex.Single
 
 interface MovieRepository {
     fun getPopularMovies(pageNum: Int): Single<List<MovieModel>>
-    fun getTvShows(): Single<List<TvShowModel>>
+    fun getTvShows(pageNum: Int): Single<List<TvShowModel>>
 }

@@ -13,8 +13,13 @@ class TvShowUsecase @Inject constructor(
     errorTransformer: ErrorTransformer<List<TvShowResult>>
 ) : SingleUseCase<List<TvShowResult>>(errorTransformer) {
 
+    companion object {
+        const val pageNum: String = "pageNum"
+    }
+
     override fun buildUseCaseSingle(data: Map<String, Any?>): Single<List<TvShowResult>> {
-        return movieRepository.getTvShows().map { it.mapToTvShowList() }
+        val pageNumber: Int = data[pageNum] as Int
+        return movieRepository.getTvShows(pageNumber).map { it.mapToTvShowList() }
     }
 
 }

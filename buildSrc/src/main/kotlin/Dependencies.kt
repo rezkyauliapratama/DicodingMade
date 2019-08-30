@@ -59,6 +59,8 @@ object Version {
     const val findBugsVersion = "3.0.2"
 
     const val timber = "4.7.1"
+
+    const val shimmerVersion = "0.4.0"
 }
 
 object Dependencies {
@@ -129,4 +131,8 @@ object TestLibs {
 
 object Annotation {
     val findBugs = "com.google.code.findbugs:jsr305:${Version.findBugsVersion}"
+}
+
+object Facebook {
+    val shimmer = "com.facebook.shimmer:shimmer:${Version.shimmerVersion}"
 }
