@@ -3,6 +3,7 @@ package id.rezkyauliapratama.fhome.domain.entity
 import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
 
 data class MovieModel(
+    val id: Int,
     val backdropPath: String?,
     val genreIds: List<Int>,
     val originalTitle: String,
@@ -17,6 +18,7 @@ data class MovieModel(
 
 fun MovieModel.mapToPopularMovie(): PopularMovieResult =
     PopularMovieResult(
+        id = id,
         genreIds = genreIds,
         originalTitle = originalTitle,
         voteCount = voteCount,

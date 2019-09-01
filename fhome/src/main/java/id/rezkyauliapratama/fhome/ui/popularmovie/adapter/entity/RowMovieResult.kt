@@ -5,6 +5,7 @@ import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
 import javax.inject.Inject
 
 class RowMovieResult(private val popularMovieResult: PopularMovieResult) {
+    fun getId() = popularMovieResult.id
     fun getOriginalTitle() = popularMovieResult.originalTitle
     fun getVoteAverage() = popularMovieResult.popularity.toString()
     fun getThumnailImage() = StringBuilder().append(BuildConfig.IMAGE_BASE_URL)

@@ -9,6 +9,8 @@ import id.innovation.libcore.ui.common.SafeObserver
 import id.innovation.libcore.ui.controllers.BaseViewModelFragment
 import id.innovation.libcore.ui.presenterstate.Resource
 import id.innovation.libcore.ui.presenterstate.ResourceState
+import id.innovation.libnavigation.Activities
+import id.innovation.libnavigation.intentTo
 import id.innovation.libuicomponent.common.ProgressDialogUtil
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
@@ -74,10 +76,22 @@ class TvShowFragment : BaseViewModelFragment<TvShowViewModel>() {
 
         rvPopularMovies.layoutManager = layoutManager
         rvPopularMovies.adapter = adapter
+
+        adapter.setOnClick(::onItemClick)
     }
 
-    private fun onItemClick(popularMovieResult: TvShowResult) {
+    private fun onItemClick(tvShowId: Int) {
+        val intent = intentTo(
+            requireContext(),
+            addressableActivity = Activities.DetailMovie
+        )
 
+        intent.putExtra(Activities.DetailMovie.bundleFirstKey, tvShowId)
+        intent.putExtra(
+            Activities.DetailMovie.bundleSecondKey,
+            Activities.DetailMovie.DetailType.TV
+        )
+        startActivity(intent)
     }
 
     private fun handleStateResult(resourceState: Resource<List<TvShowResult>>) {

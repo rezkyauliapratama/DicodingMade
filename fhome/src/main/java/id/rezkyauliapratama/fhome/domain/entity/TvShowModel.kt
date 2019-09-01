@@ -3,6 +3,7 @@ package id.rezkyauliapratama.fhome.domain.entity
 import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
 
 data class TvShowModel(
+    val id: Int,
     val backdropPath: String?,
     val genreIds: List<Int>,
     val originalTitle: String,
@@ -17,6 +18,7 @@ data class TvShowModel(
 
 fun TvShowModel.mapToTvShows(): TvShowResult =
     TvShowResult(
+        id = id,
         genreIds = genreIds,
         originalTitle = originalTitle,
         voteCount = voteCount,

@@ -12,7 +12,8 @@ import id.rezkyauliapratama.fdetailmovie.ui.DetailMovieFragment
 @Component(
     modules = [
         PresenterModule::class,
-        ViewModelFactoryModule::class, ViewModelModule::class
+        ViewModelFactoryModule::class, ViewModelModule::class,
+        RepositoryModule::class
     ],
     dependencies = [CoreComponent::class]
 )

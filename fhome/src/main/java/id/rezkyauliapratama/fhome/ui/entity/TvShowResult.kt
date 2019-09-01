@@ -1,6 +1,7 @@
 package id.rezkyauliapratama.fhome.ui.entity
 
 data class TvShowResult(
+    val id: Int,
     val genreIds: List<Int>,
     val originalTitle: String,
     val popularity: Double,

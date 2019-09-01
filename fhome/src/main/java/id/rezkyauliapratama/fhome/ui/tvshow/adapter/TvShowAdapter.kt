@@ -20,6 +20,8 @@ class TvShowAdapter @Inject constructor(
     private val rowTvShowResult: RowTvShowResult.Factory
 ) : PagedListAdapter<TvShowResult, RecyclerView.ViewHolder>(tvShowsDiffCallback) {
 
+    lateinit var onClickItem: (Int) -> Unit
+
     companion object {
 
         const val DATA_VIEW_TYPE = 1
@@ -40,6 +42,10 @@ class TvShowAdapter @Inject constructor(
                 return oldItem == newItem
             }
         }
+    }
+
+    fun setOnClick(onClick: (Int) -> Unit) {
+        this.onClickItem = onClick
     }
 
     private var resourceState: ResourceState = ResourceState.LOADING
@@ -74,7 +80,7 @@ class TvShowAdapter @Inject constructor(
         if (getItemViewType(position) == DATA_VIEW_TYPE && holder is PopularMovieViewHolder) {
             getItem(position)?.apply {
                 val rowPopularMovieResult = rowTvShowResult.create(this)
-                holder.bind(rowPopularMovieResult)
+                holder.bind(rowPopularMovieResult, onClickItem)
             }
         } else
             (holder as LoaderViewHolder).bind(resourceState)
@@ -89,7 +95,7 @@ class TvShowAdapter @Inject constructor(
 
 class PopularMovieViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bind(moveResult: RowTvShowResult) {
+    fun bind(moveResult: RowTvShowResult, onClick: (Int) -> Unit) {
         view.shimmer_view_container.startShimmer()
         view.tvTitle.text = moveResult.getOriginalTitle()
         view.tvScore.text = moveResult.getVoteAverage()
@@ -102,7 +108,9 @@ class PopularMovieViewHolder(private val view: View) : RecyclerView.ViewHolder(v
             }
         )
 
-
+        view.setOnClickListener{
+            onClick.invoke(moveResult.getId())
+        }
     }
 }
 

@@ -6,6 +6,7 @@ import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
 import javax.inject.Inject
 
 class RowTvShowResult(private val tvShowResult: TvShowResult) {
+    fun getId() = tvShowResult.id
     fun getOriginalTitle() = tvShowResult.originalTitle
     fun getVoteAverage() = tvShowResult.popularity.toString()
     fun getThumnailImage() = StringBuilder().append(BuildConfig.IMAGE_BASE_URL)

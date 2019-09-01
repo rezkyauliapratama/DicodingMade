@@ -10,11 +10,11 @@ class DataManagerImpl(
     private val apiDataSource: MovieApiDataSource
 ) : DataManager {
 
-    override fun getTvShows(apiKey: String, pageNum: Int): Single<List<TvShowDtoBean>> {
-        return apiDataSource.getTvShows(apiKey, pageNum)
+    override fun getTvShows(pageNum: Int, language: String): Single<List<TvShowDtoBean>> {
+        return apiDataSource.getTvShows(pageNum, language)
     }
 
-    override fun getPopularMovies(apiKey: String, pageNum: Int): Single<List<MovieDtoBean>> =
-        apiDataSource.getPopularMovies(apiKey, pageNum)
+    override fun getPopularMovies(pageNum: Int, language: String): Single<List<MovieDtoBean>> =
+        apiDataSource.getPopularMovies(pageNum, language)
 
 }

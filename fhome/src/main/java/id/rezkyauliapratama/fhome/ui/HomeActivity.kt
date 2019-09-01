@@ -5,6 +5,7 @@ import id.innovation.libcore.di.PresenterModule
 import id.innovation.libcore.ui.controllers.BaseActivity
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
+import timber.log.Timber
 
 
 class HomeActivity : BaseActivity() {
@@ -22,4 +23,5 @@ class HomeActivity : BaseActivity() {
     override fun getContentResource(): Int {
         return R.layout.activity_home
     }
+
 }

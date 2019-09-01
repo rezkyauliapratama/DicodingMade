@@ -37,7 +37,6 @@ class HomeFragment : BaseFragment() {
 
     override fun initViews() {
         super.initViews()
-        Timber.e("initview")
         tvTitle.setText(R2.string.home)
         vpContainer.adapter = homePagerAdapter
         tabLayout.setupWithViewPager(vpContainer)
@@ -49,12 +48,10 @@ class HomeFragment : BaseFragment() {
 
     override fun onStart() {
         super.onStart()
-        Timber.e("onstart")
     }
 
     override fun onStop() {
         super.onStop()
-        Timber.e("onstop")
     }
 
 

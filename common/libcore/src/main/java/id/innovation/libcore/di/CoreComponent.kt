@@ -3,7 +3,6 @@ package id.innovation.libcore.di
 import android.app.Application
 import com.squareup.moshi.Moshi
 import dagger.Component
-import id.innovation.libcore.data.locale.LocaleManager
 import id.innovation.libcore.domain.executors.PostExecutionThread
 import id.innovation.libcore.domain.executors.ThreadExecutor
 import id.innovation.libnetwork.common.NetworkErrorInterface

@@ -48,9 +48,9 @@ object LocaleManager {
      * @param mContext current context
      * @return current locale key by default return english locale
      */
-    fun getLanguagePref(mContext: Context): String? {
+    fun getLanguagePref(mContext: Context): String {
         val mPreferences = PreferenceManager.getDefaultSharedPreferences(mContext)
-        return mPreferences.getString(LANGUAGE_KEY, ENGLISH)
+        return mPreferences.getString(LANGUAGE_KEY, ENGLISH) ?: ENGLISH
     }
 
     /**
@@ -87,4 +87,5 @@ object LocaleManager {
         val config = res.configuration
         return if (Build.VERSION.SDK_INT >= 24) config.locales.get(0) else config.locale
     }
+
 }

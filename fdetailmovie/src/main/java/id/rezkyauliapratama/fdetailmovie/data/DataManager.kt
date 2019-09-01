@@ -1,0 +1,5 @@
+package id.rezkyauliapratama.fdetailmovie.data
+
+import id.rezkyauliapratama.fdetailmovie.data.source.api.DetailContentApiDataSource
+
+interface DataManager: DetailContentApiDataSource

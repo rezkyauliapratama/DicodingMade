@@ -7,15 +7,14 @@ import id.innovation.libcore.di.CoreInjectHelper
 import id.innovation.libcore.di.PresenterModule
 import id.innovation.libcore.ui.controllers.BaseViewModelActivity
 import id.innovation.libnavigation.Activities
-import id.innovation.libsharedata.entity.DetailMovieResult
 import id.rezkyauliapratama.fdetailmovie.di.DaggerFeatureComponent
+import timber.log.Timber
 
 class DetailMovieActivity : BaseViewModelActivity<DetailMovieViewModel>() {
 
     override fun buildViewModel(): DetailMovieViewModel {
         return ViewModelProviders.of(this, mViewModelFactory)[DetailMovieViewModel::class.java]
     }
-
 
     override fun injectDagger() {
         DaggerFeatureComponent
@@ -32,11 +31,23 @@ class DetailMovieActivity : BaseViewModelActivity<DetailMovieViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val detailMovieResult = intent?.getParcelableExtra<DetailMovieResult>(Activities.DetailMovie.bundleKey)
+        val id = intent.getIntExtra(Activities.DetailMovie.bundleFirstKey, 0)
+        val detailType =
+            intent.getSerializableExtra(Activities.DetailMovie.bundleSecondKey) as Activities.DetailMovie.DetailType
 
-        detailMovieResult?.apply {
-            viewModel.getDetailMovieResult(this)
-        }
+        if (id > 0)
+            when (detailType) {
+                Activities.DetailMovie.DetailType.MOVIE -> {
+                    Timber.e("detail type >> movie")
+                    viewModel.getDetailMovieResult(id)
+                }
+                Activities.DetailMovie.DetailType.TV -> {
+                    Timber.e("detail type >> tv")
+                    viewModel.getDetailTvShowResult(id)
+                }
+
+            }
+
     }
 
 }

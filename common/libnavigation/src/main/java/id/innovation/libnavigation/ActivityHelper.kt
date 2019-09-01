@@ -53,9 +53,15 @@ interface AddressableActivity {
  * Can contain intent extra names or functions associated with the activity creation.
  */
 object Activities {
-
+    object Home : AddressableActivity {
+        override val className = "$PACKAGE_NAME.fhome.ui.HomeActivity"
+    }
     object DetailMovie : AddressableActivity {
-        const val bundleKey = "data"
+        const val bundleFirstKey = "data1"
+        const val bundleSecondKey = "data2"
+        enum class DetailType{
+            MOVIE,TV
+        }
         override val className = "$PACKAGE_NAME.fdetailmovie.ui.DetailMovieActivity"
     }
 

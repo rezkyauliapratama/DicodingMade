@@ -46,6 +46,7 @@ class MovieDtoBean(
 
 fun MovieDtoBean.mapToMovieDomain(): MovieModel =
     MovieModel(
+        id = id,
         backdropPath = backdropPath,
         genreIds = genreIds,
         originalTitle = originalTitle,

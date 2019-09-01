@@ -7,14 +7,14 @@ import io.reactivex.Single
 
 class MovieApiDataSourceImpl(private val api: MovieApi) : MovieApiDataSource {
 
-    override fun getTvShows(apiKey: String, pageNum: Int): Single<List<TvShowDtoBean>> =
-        api.getTvShows(apiKey, pageNum)
+    override fun getTvShows(pageNum: Int, language: String): Single<List<TvShowDtoBean>> =
+        api.getTvShows(pageNumber = pageNum, language = language)
             .map {
                 it.results
             }
 
-    override fun getPopularMovies(apiKey: String, pageNum: Int): Single<List<MovieDtoBean>> =
-        api.getMovies(apiKey, pageNum)
+    override fun getPopularMovies(pageNum: Int, language: String): Single<List<MovieDtoBean>> =
+        api.getMovies(pageNumber = pageNum, language = language)
             .map {
                 it.moviesDto
             }

@@ -6,6 +6,6 @@ import io.reactivex.Single
 
 
 interface MovieApiDataSource {
-    fun getPopularMovies(apiKey: String, pageNum: Int): Single<List<MovieDtoBean>>
-    fun getTvShows(apiKey: String, pageNum: Int): Single<List<TvShowDtoBean>>
+    fun getPopularMovies(pageNum: Int, language: String): Single<List<MovieDtoBean>>
+    fun getTvShows(pageNum: Int, language: String): Single<List<TvShowDtoBean>>
 }

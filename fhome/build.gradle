@@ -8,6 +8,4 @@ dependencies {
 
     kapt Dagger.daggerCompiler
     implementation Arch.paging
-
-    implementation Facebook.shimmer
 }

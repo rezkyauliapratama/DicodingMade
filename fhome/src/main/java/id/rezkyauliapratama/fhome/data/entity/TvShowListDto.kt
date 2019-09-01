@@ -48,6 +48,7 @@ data class TvShowDtoBean(
 
 fun TvShowDtoBean.mapToTvShowDomain(): TvShowModel =
     TvShowModel(
+        id = id,
         backdropPath = backdropPath,
         genreIds = genreIds,
         originalTitle = name,
