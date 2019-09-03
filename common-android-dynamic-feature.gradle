@@ -13,6 +13,7 @@ android {
         targetSdkVersion Release.targetSdkVersion
         versionCode Release.versionCode
         versionName Release.versionName
+        vectorDrawables.useSupportLibrary = true
     }
 
     with flavorConfig

@@ -2,13 +2,9 @@ package id.innovation.libcore.ui.controllers
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.annotation.CallSuper
+import androidx.core.view.isVisible
 import id.innovation.libcore.ui.viewmodels.BaseViewModel
-import java.net.ConnectException
-import id.co.rezkyauliapratama.libcore.R
-import id.innovation.libnetwork.common.NetworkException
-import timber.log.Timber
 
 abstract class BaseViewModelFragment<VIEWMODEL : BaseViewModel>
     : BaseFragment() {
@@ -75,25 +71,8 @@ abstract class BaseViewModelFragment<VIEWMODEL : BaseViewModel>
         pageErrorView?.isVisible = true
     }
 
-    protected fun handleGenericError(throwable: Throwable, pageErrorView: View? = null) {
-//        if (BuildConfig.DEBUG) throwable.printStackTrace()
-        val errorMessage: String? = when (throwable) {
-            is ConnectException -> if (pageErrorView != null) {
-                handleNoConnectionPageError(pageErrorView)
-                null
-            } else {
-                getString(R.string.general_no_internet_error_title)
-            }
-            is NetworkException.UnauthorizedException -> {
-                null
-            }
-            else -> throwable.localizedMessage
-        }
-
-        //TODO Rezky, handle the behaviour to display error message
-    }
-
-    private fun handleNoConnectionPageError(pageErrorView: View) {
+    private fun
+            handleNoConnectionPageError(pageErrorView: View) {
         handlePageError(pageErrorView)
         //pageErrorView.btnRetry.setOnClickListener { viewModel.loadPage(true) }
     }

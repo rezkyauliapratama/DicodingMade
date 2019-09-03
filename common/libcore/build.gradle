@@ -3,6 +3,7 @@ apply from: "$rootDir/common-core-library.gradle"
 
 dependencies {
     api project(Modules.libNetwork)
+    api project(Modules.libUiComponent)
 
     implementation Support.lifeCycleExtensions
     implementation Support.core

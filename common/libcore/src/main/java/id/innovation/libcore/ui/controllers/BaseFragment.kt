@@ -10,12 +10,13 @@ import androidx.annotation.CallSuper
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import id.co.rezkyauliapratama.libcore.R
+import id.innovation.libcore.ui.ToastUtils
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import timber.log.Timber
+import java.net.ConnectException
 import javax.inject.Inject
-import id.innovation.libcore.data.locale.LocaleManager
-
-
 
 abstract class BaseFragment : Fragment() {
 
@@ -33,6 +34,7 @@ abstract class BaseFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         initViews()
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is Activity) {
@@ -40,7 +42,11 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         compositeDisposable = CompositeDisposable()
         return inflater.inflate(getContentResource(), container, false)
     }
@@ -65,6 +71,20 @@ abstract class BaseFragment : Fragment() {
         if (!dialogFragment.isAdded) {
             dialogFragment.show(childFragmentManager, tag)
         }
+    }
+
+
+    protected fun handleGenericError(throwable: Throwable) {
+//        if (BuildConfig.DEBUG) throwable.printStackTrace()
+        val errorMessage: String? = when (throwable) {
+            is ConnectException ->
+                getString(R.string.general_no_internet_error_title)
+
+            else -> throwable.localizedMessage
+        }
+
+        Timber.d("errorMessage >> $errorMessage")
+        ToastUtils.showToast(context, errorMessage)
     }
 
 }

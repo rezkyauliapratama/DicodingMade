@@ -12,6 +12,9 @@ import timber.log.Timber
 
 class DetailMovieActivity : BaseViewModelActivity<DetailMovieViewModel>() {
 
+    var mId: Int = 0
+    lateinit var mType: Activities.DetailMovie.DetailType
+
     override fun buildViewModel(): DetailMovieViewModel {
         return ViewModelProviders.of(this, mViewModelFactory)[DetailMovieViewModel::class.java]
     }
@@ -35,7 +38,11 @@ class DetailMovieActivity : BaseViewModelActivity<DetailMovieViewModel>() {
         val detailType =
             intent.getSerializableExtra(Activities.DetailMovie.bundleSecondKey) as Activities.DetailMovie.DetailType
 
-        if (id > 0)
+        if (id > 0 && savedInstanceState == null){
+
+            mId = id
+            mType = detailType
+
             when (detailType) {
                 Activities.DetailMovie.DetailType.MOVIE -> {
                     Timber.e("detail type >> movie")
@@ -47,7 +54,24 @@ class DetailMovieActivity : BaseViewModelActivity<DetailMovieViewModel>() {
                 }
 
             }
+        }
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(Activities.DetailMovie.bundleFirstKey, mId)
+        outState.putSerializable(Activities.DetailMovie.bundleSecondKey, mType)
+        viewModel.saveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        savedInstanceState?.run {
+            mId = this.getInt(Activities.DetailMovie.bundleFirstKey,0)
+            mType = this.getSerializable(Activities.DetailMovie.bundleSecondKey) as Activities.DetailMovie.DetailType
+            viewModel.restoreInstanceState(savedInstanceState)
+        }
     }
 
 }

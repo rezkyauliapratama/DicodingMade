@@ -64,6 +64,6 @@ fun DetailMovieDto.mapToDomain(): DetailContentModel =
         backdropPath = backdropPath,
         posterPath = posterPath ?: "",
         overview = overview,
-        popularity = voteCount.toDouble(),
+        popularity = voteAverage,
         releaseDate = releaseDate
     )

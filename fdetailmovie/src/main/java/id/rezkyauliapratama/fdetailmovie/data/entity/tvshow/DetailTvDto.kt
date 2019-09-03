@@ -70,6 +70,6 @@ fun DetailTvDto.mapToDomain(): DetailContentModel =
         backdropPath = backdropPath,
         posterPath = posterPath ?: "",
         overview = overview,
-        popularity = voteCount.toDouble(),
+        popularity = voteAverage ?: 0.0,
         releaseDate = firstAirDate
     )

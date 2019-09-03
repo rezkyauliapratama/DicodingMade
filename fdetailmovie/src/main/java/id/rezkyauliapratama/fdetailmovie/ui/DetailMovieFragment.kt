@@ -63,7 +63,10 @@ class DetailMovieFragment : BaseFragment() {
             }
             is ResourceState.ERROR -> {
                 ProgressDialogUtil.hideProgressDialog()
-                Timber.e("Error : ${resource.throwable}")
+                resource.throwable?.apply {
+                    Timber.e("error : ${this}")
+                    handleGenericError(this)
+                }
             }
         }
     }

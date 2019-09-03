@@ -108,7 +108,10 @@ class TvShowFragment : BaseViewModelFragment<TvShowViewModel>() {
             }
             ResourceState.ERROR -> {
                 ProgressDialogUtil.hideProgressDialog()
-                Timber.e("error : ${resourceState.throwable}")
+                resourceState.throwable?.apply {
+                    Timber.e("error : ${this}")
+                    handleGenericError(this)
+                }
             }
         }
     }

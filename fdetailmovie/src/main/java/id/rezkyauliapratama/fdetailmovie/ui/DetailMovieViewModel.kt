@@ -1,5 +1,6 @@
 package id.rezkyauliapratama.fdetailmovie.ui
 
+import android.os.Bundle
 import id.innovation.libcore.ui.common.setError
 import id.innovation.libcore.ui.common.setLoading
 import id.innovation.libcore.ui.common.setSuccess
@@ -16,7 +17,12 @@ class DetailMovieViewModel @Inject constructor(
     private val detailTvShowUseCase: DetailTvShowUseCase
 ) : BaseViewModel() {
 
+    companion object {
+        const val BUNDLE_KEY = "bundle_key"
+    }
+
     internal val detailMovieLiveData = SingleLiveEvent<Resource<DetailMovieResult>>()
+    private var detailMovieResult: DetailMovieResult? = null
 
     fun getDetailMovieResult(movieId: Int) {
         detailMovieLiveData.setLoading()
@@ -27,6 +33,7 @@ class DetailMovieViewModel @Inject constructor(
             )
         ).subscribe(
             {
+                detailMovieResult = it
                 detailMovieLiveData.setSuccess(it)
             },
             {
@@ -44,6 +51,7 @@ class DetailMovieViewModel @Inject constructor(
             )
         ).subscribe(
             {
+                detailMovieResult = it
                 detailMovieLiveData.setSuccess(it)
             },
             {
@@ -51,4 +59,14 @@ class DetailMovieViewModel @Inject constructor(
             }
         ).track()
     }
+
+    internal fun saveInstanceState(saveInstance: Bundle){
+        saveInstance.putParcelable(BUNDLE_KEY, detailMovieResult)
+    }
+
+    internal fun restoreInstanceState(saveInstance: Bundle?) {
+        this.detailMovieResult = saveInstance?.getParcelable(BUNDLE_KEY) as DetailMovieResult
+        detailMovieResult?.apply { detailMovieLiveData.setSuccess(detailMovieResult!!) }
+    }
+
 }
