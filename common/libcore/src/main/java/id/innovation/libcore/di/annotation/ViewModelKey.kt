@@ -1,4 +1,4 @@
-package id.innovation.libcore.di
+package id.innovation.libcore.di.annotation
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

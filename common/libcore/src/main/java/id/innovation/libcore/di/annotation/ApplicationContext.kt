@@ -1,4 +1,4 @@
-package id.innovation.libcore.di
+package id.innovation.libcore.di.annotation
 
 import javax.inject.Qualifier
 
