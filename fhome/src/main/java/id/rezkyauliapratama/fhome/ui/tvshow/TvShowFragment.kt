@@ -3,8 +3,8 @@ package id.rezkyauliapratama.fhome.ui.tvshow
 import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
-import id.innovation.libcore.di.CoreInjectHelper.provideCoreComponent
-import id.innovation.libcore.di.PresenterModule
+import id.innovation.libcore.di.helper.CoreInjectHelper.provideCoreComponent
+import id.innovation.libcore.di.module.PresenterModule
 import id.innovation.libcore.ui.common.SafeObserver
 import id.innovation.libcore.ui.controllers.BaseViewModelFragment
 import id.innovation.libcore.ui.presenterstate.Resource

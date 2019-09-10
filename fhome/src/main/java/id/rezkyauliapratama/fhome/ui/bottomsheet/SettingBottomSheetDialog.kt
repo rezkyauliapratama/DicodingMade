@@ -14,15 +14,15 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import id.innovation.libcore.data.locale.LocaleManager
-import id.innovation.libcore.di.CoreInjectHelper
-import id.innovation.libcore.di.PresenterModule
+import id.innovation.libcore.di.helper.CoreInjectHelper.provideCoreComponent
+import id.innovation.libcore.di.module.PresenterModule
 import id.innovation.libuicomponent.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
 import kotlinx.android.synthetic.main.dialog_change_language.*
 import id.rezkyauliapratama.fhome.R as R2
 
-
-class SettingBottomSheetDialog : BottomSheetDialogFragment(), View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+class SettingBottomSheetDialog : BottomSheetDialogFragment(), View.OnClickListener,
+    RadioGroup.OnCheckedChangeListener {
 
     var chooseLanguage: String = ""
 
@@ -44,7 +44,8 @@ class SettingBottomSheetDialog : BottomSheetDialogFragment(), View.OnClickListen
 
         view.viewTreeObserver.addOnGlobalLayoutListener {
             val dialog = dialog as BottomSheetDialog?
-            val bottomSheet = dialog?.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+            val bottomSheet =
+                dialog?.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
             val behavior = BottomSheetBehavior.from(bottomSheet)
 
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
@@ -80,7 +81,7 @@ class SettingBottomSheetDialog : BottomSheetDialogFragment(), View.OnClickListen
     private fun injectDI() {
         DaggerFeatureComponent
             .builder()
-            .coreComponent(CoreInjectHelper.provideCoreComponent(requireActivity().applicationContext))
+            .coreComponent(provideCoreComponent(requireActivity().applicationContext))
             .presenterModule(PresenterModule(requireActivity()))
             .build()
             .inject(this)

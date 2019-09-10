@@ -1,4 +1,4 @@
-package id.innovation.libcore.di
+package id.innovation.libcore.di.helper
 
 import id.innovation.libcore.di.CoreComponent
 

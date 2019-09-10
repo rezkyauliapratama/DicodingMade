@@ -2,14 +2,13 @@ package id.rezkyauliapratama.fhome.data
 
 import android.content.Context
 import id.innovation.libcore.data.locale.LocaleManager
-import id.innovation.libcore.di.FeatureScope
+import id.innovation.libcore.di.annotation.FeatureScope
 import id.rezkyauliapratama.fhome.data.entity.mapToMovieDomain
 import id.rezkyauliapratama.fhome.data.entity.mapToTvShowDomain
 import id.rezkyauliapratama.fhome.domain.entity.MovieModel
 import id.rezkyauliapratama.fhome.domain.entity.TvShowModel
 import id.rezkyauliapratama.fhome.domain.repository.MovieRepository
 import io.reactivex.Single
-import timber.log.Timber
 import javax.inject.Inject
 
 @FeatureScope

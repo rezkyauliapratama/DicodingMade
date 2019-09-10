@@ -1,11 +1,10 @@
 package id.rezkyauliapratama.fhome.ui
 
-import id.innovation.libcore.di.CoreInjectHelper
-import id.innovation.libcore.di.PresenterModule
+import id.innovation.libcore.di.helper.CoreInjectHelper
+import id.innovation.libcore.di.module.PresenterModule
 import id.innovation.libcore.ui.controllers.BaseActivity
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
-import timber.log.Timber
 
 
 class HomeActivity : BaseActivity() {

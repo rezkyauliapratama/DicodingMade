@@ -58,9 +58,17 @@ object Version {
     //findBugAnnotation
     const val findBugsVersion = "3.0.2"
 
+    //log
     const val timber = "4.7.1"
 
+    //loading
     const val shimmerVersion = "0.4.0"
+
+    //room
+    const val roomVersion = "2.1.0"
+
+    //stetho
+    const val stethoVersion = "1.5.1"
 }
 
 object Dependencies {
@@ -135,4 +143,13 @@ object Annotation {
 
 object Facebook {
     val shimmer = "com.facebook.shimmer:shimmer:${Version.shimmerVersion}"
+}
+
+
+object Database {
+    //room database
+    val room = "androidx.room:room-runtime:${Version.roomVersion}"
+    val roomCompiler = "androidx.room:room-compiler:${Version.roomVersion}"
+    val roomRx = "androidx.room:room-rxjava2:${Version.roomVersion}"
+    val stetho = "com.facebook.stetho:stetho:${Version.stethoVersion}"
 }

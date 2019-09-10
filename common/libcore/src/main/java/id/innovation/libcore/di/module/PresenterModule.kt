@@ -1,9 +1,10 @@
-package id.innovation.libcore.di
+package id.innovation.libcore.di.module
 
 import android.content.Context
 import androidx.fragment.app.FragmentActivity
 import dagger.Module
 import dagger.Provides
+import id.innovation.libcore.di.annotation.ActivityContext
 
 
 @Module

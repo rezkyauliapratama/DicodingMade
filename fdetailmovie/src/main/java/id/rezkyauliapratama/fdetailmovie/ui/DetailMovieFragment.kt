@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import id.dicodingmade.fdetailmovie.R
-import id.innovation.libcore.di.CoreInjectHelper
-import id.innovation.libcore.di.PresenterModule
+import id.innovation.libuicomponent.R as R2
 import id.innovation.libcore.ui.common.SafeObserver
 import id.innovation.libcore.ui.controllers.BaseFragment
 import id.innovation.libcore.ui.presenterstate.Resource
@@ -18,6 +17,8 @@ import id.rezkyauliapratama.fdetailmovie.di.DaggerFeatureComponent
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
 import timber.log.Timber
 import java.lang.ref.WeakReference
+import id.innovation.libcore.di.helper.CoreInjectHelper
+import id.innovation.libcore.di.module.PresenterModule
 
 class DetailMovieFragment : BaseFragment() {
 
@@ -48,6 +49,18 @@ class DetailMovieFragment : BaseFragment() {
             viewLifecycleOwner,
             SafeObserver(this::handleDetailMovieResult)
         )
+
+        sharedViweModel().isFavoriteLiveData.observe(
+            viewLifecycleOwner,SafeObserver(this::handleFavorite)
+        )
+    }
+
+    private fun handleFavorite(isFavorite: Boolean) {
+        if (isFavorite){
+            ivFavorite.setImageResource(R2.drawable.ic_favorite_24dp)
+        } else {
+            ivFavorite.setImageResource(R2.drawable.ic_favorite_border_24dp)
+        }
     }
 
     private fun handleDetailMovieResult(resource: Resource<DetailMovieResult>) {

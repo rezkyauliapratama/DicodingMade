@@ -2,7 +2,8 @@ package id.rezkyauliapratama.fdetailmovie.data
 
 import android.content.Context
 import id.innovation.libcore.data.locale.LocaleManager
-import id.innovation.libcore.di.FeatureScope
+import id.innovation.libcore.di.annotation.FeatureScope
+import id.innovation.libdatabase.entity.FavoriteTable
 import id.rezkyauliapratama.fdetailmovie.data.entity.movie.mapToDomain
 import id.rezkyauliapratama.fdetailmovie.data.entity.tvshow.mapToDomain
 import id.rezkyauliapratama.fdetailmovie.domain.entity.DetailContentModel
@@ -15,6 +16,10 @@ class DetailContentRepositoryImpl @Inject constructor(
     private val context: Context,
     private val dataManager: DataManager
 ) : DetailContentRepository {
+
+    override fun getFavorite(itemId: String): Single<FavoriteTable> {
+        return dataManager.getFavorite(itemId)
+    }
 
     override fun getTvShowMovie(tvShowId: Int): Single<DetailContentModel> {
         return dataManager.getDetailTvShow(tvShowId, LocaleManager.getLanguagePref(context)).map {

@@ -3,8 +3,8 @@ package id.rezkyauliapratama.fdetailmovie.ui
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import id.dicodingmade.fdetailmovie.R
-import id.innovation.libcore.di.CoreInjectHelper
-import id.innovation.libcore.di.PresenterModule
+import id.innovation.libcore.di.helper.CoreInjectHelper
+import id.innovation.libcore.di.module.PresenterModule
 import id.innovation.libcore.ui.controllers.BaseViewModelActivity
 import id.innovation.libnavigation.Activities
 import id.rezkyauliapratama.fdetailmovie.di.DaggerFeatureComponent
@@ -54,6 +54,8 @@ class DetailMovieActivity : BaseViewModelActivity<DetailMovieViewModel>() {
                 }
 
             }
+
+            viewModel.getFavorit(id)
         }
 
     }

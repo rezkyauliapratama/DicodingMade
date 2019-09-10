@@ -3,8 +3,8 @@ package id.rezkyauliapratama.fhome.di
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import id.innovation.libcore.di.ActivityContext
-import id.innovation.libcore.di.FeatureScope
+import id.innovation.libcore.di.annotation.ActivityContext
+import id.innovation.libcore.di.annotation.FeatureScope
 import id.innovation.libnetwork.services
 import id.rezkyauliapratama.fhome.data.DataManager
 import id.rezkyauliapratama.fhome.data.MovieRepositoryImpl

@@ -1,4 +1,4 @@
-package id.innovation.libcore.di
+package id.innovation.libcore.di.module
 
 import dagger.Module
 import dagger.Provides

@@ -1,6 +1,7 @@
-package id.innovation.libcore.di
+package id.innovation.libcore.di.helper
 
 import android.content.Context
+import id.innovation.libcore.di.CoreComponent
 
 object CoreInjectHelper {
     fun provideCoreComponent(applicationContext: Context): CoreComponent {

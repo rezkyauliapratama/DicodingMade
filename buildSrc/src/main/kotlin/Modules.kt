@@ -5,6 +5,7 @@ object Modules {
     val libUiComponent = ":common:libuicomponent"
     val libNavigation = ":common:libnavigation"
     val libShareData = ":common:libsharedata"
+    val libDatabase = ":common:libdatabase"
 
     //feature modules
     val featureHome = ":fhome"

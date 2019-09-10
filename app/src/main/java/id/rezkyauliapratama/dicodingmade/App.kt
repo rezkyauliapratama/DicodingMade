@@ -7,8 +7,9 @@ import id.innovation.libcore.di.*
 import id.innovation.libnetwork.di.NetworkModule
 import timber.log.Timber
 import id.innovation.libcore.data.locale.LocaleManager
-
-
+import id.innovation.libcore.di.helper.CoreComponentProvider
+import id.innovation.libcore.di.module.CoreModule
+import id.innovation.libcore.di.module.SchedulersModule
 
 
 class App : Application(), CoreComponentProvider {
@@ -37,9 +38,10 @@ class App : Application(), CoreComponentProvider {
         if (!this::coreComponent.isInitialized) {
 
             coreComponent = DaggerCoreComponent.builder()
-                .coreModule(CoreModule())
+                .coreModule(CoreModule(this))
                 .schedulerModule(SchedulersModule())
                 .networkModule(NetworkModule(BuildConfig.API_BASE_URL, arrayListOf()))
+                .databaseModule(DatabaseModule("database"))
                 .build()
         }
         return coreComponent

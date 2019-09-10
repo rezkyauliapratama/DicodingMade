@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import id.innovation.libcore.di.ViewModelKey
+import id.innovation.libcore.di.annotation.ViewModelKey
 import id.rezkyauliapratama.fdetailmovie.ui.DetailMovieViewModel
 
 @Module

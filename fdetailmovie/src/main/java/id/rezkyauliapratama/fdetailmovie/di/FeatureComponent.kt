@@ -2,9 +2,9 @@ package id.rezkyauliapratama.fdetailmovie.di
 
 import dagger.Component
 import id.innovation.libcore.di.CoreComponent
-import id.innovation.libcore.di.FeatureScope
-import id.innovation.libcore.di.PresenterModule
-import id.innovation.libcore.di.ViewModelFactoryModule
+import id.innovation.libcore.di.annotation.FeatureScope
+import id.innovation.libcore.di.module.PresenterModule
+import id.innovation.libcore.di.module.ViewModelFactoryModule
 import id.rezkyauliapratama.fdetailmovie.ui.DetailMovieActivity
 import id.rezkyauliapratama.fdetailmovie.ui.DetailMovieFragment
 

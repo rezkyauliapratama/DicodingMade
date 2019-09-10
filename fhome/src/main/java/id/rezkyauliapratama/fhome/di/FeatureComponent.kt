@@ -2,9 +2,9 @@ package id.rezkyauliapratama.fhome.di
 
 import dagger.Component
 import id.innovation.libcore.di.CoreComponent
-import id.innovation.libcore.di.FeatureScope
-import id.innovation.libcore.di.PresenterModule
-import id.innovation.libcore.di.ViewModelFactoryModule
+import id.innovation.libcore.di.annotation.FeatureScope
+import id.innovation.libcore.di.module.PresenterModule
+import id.innovation.libcore.di.module.ViewModelFactoryModule
 import id.rezkyauliapratama.fhome.ui.HomeActivity
 import id.rezkyauliapratama.fhome.ui.HomeFragment
 import id.rezkyauliapratama.fhome.ui.bottomsheet.SettingBottomSheetDialog

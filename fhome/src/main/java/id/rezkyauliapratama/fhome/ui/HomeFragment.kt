@@ -1,7 +1,6 @@
 package id.rezkyauliapratama.fhome.ui
 
-import id.innovation.libcore.di.CoreInjectHelper.provideCoreComponent
-import id.innovation.libcore.di.PresenterModule
+import id.innovation.libcore.di.helper.CoreInjectHelper.provideCoreComponent
 import id.innovation.libcore.ui.controllers.BaseFragment
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
@@ -9,8 +8,8 @@ import id.rezkyauliapratama.fhome.ui.bottomsheet.SettingBottomSheetDialog
 import id.rezkyauliapratama.fhome.ui.pager.HomePagerAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar.*
-import timber.log.Timber
 import id.innovation.libuicomponent.R as R2
+import id.innovation.libcore.di.module.PresenterModule
 
 class HomeFragment : BaseFragment() {
 

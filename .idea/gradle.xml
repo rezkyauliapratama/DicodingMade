@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/common/libcore" />
+            <option value="$PROJECT_DIR$/common/libdatabase" />
             <option value="$PROJECT_DIR$/common/libnavigation" />
             <option value="$PROJECT_DIR$/common/libnetwork" />
             <option value="$PROJECT_DIR$/common/libsharedata" />

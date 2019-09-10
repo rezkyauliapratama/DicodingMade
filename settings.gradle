@@ -7,3 +7,4 @@ include Modules.libCore
 include Modules.libUiComponent
 include Modules.libNavigation
 include Modules.libShareData
+include Modules.libDatabase
