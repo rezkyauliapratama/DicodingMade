@@ -3,6 +3,7 @@ package id.rezkyauliapratama.dicodingmade
 import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
+import com.facebook.stetho.Stetho
 import id.innovation.libcore.di.*
 import id.innovation.libnetwork.di.NetworkModule
 import timber.log.Timber
@@ -22,6 +23,8 @@ class App : Application(), CoreComponentProvider {
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
+            Stetho.initializeWithDefaults(this)
+
         }
     }
 

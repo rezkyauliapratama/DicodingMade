@@ -8,17 +8,20 @@ import id.innovation.libcore.ui.common.setSuccess
 import id.innovation.libcore.ui.presenterstate.Resource
 import id.innovation.libcore.ui.viewmodels.BaseViewModel
 import id.innovation.libcore.ui.viewmodels.SingleLiveEvent
+import id.innovation.libdatabase.entity.FavoriteType
 import id.innovation.libsharedata.entity.DetailMovieResult
 import id.rezkyauliapratama.fdetailmovie.domain.usecase.DetailMovieUseCase
 import id.rezkyauliapratama.fdetailmovie.domain.usecase.DetailTvShowUseCase
 import id.rezkyauliapratama.fdetailmovie.domain.usecase.GetFavoriteUseCase
+import id.rezkyauliapratama.fdetailmovie.domain.usecase.SetFavoriteUseCase
 import timber.log.Timber
 import javax.inject.Inject
 
 class DetailMovieViewModel @Inject constructor(
     private val detailMovieUseCase: DetailMovieUseCase,
     private val detailTvShowUseCase: DetailTvShowUseCase,
-    private val getFavoriteUseCase: GetFavoriteUseCase
+    private val getFavoriteUseCase: GetFavoriteUseCase,
+    private val setFavoriteUseCase: SetFavoriteUseCase
 ) : BaseViewModel() {
 
     companion object {
@@ -29,7 +32,13 @@ class DetailMovieViewModel @Inject constructor(
     internal val isFavoriteLiveData = SingleLiveEvent<Boolean>()
     private var detailMovieResult: DetailMovieResult? = null
 
+    private lateinit var favoriteType: FavoriteType
+    private  var itemId: Int = 0
+
     fun getDetailMovieResult(movieId: Int) {
+        itemId = movieId
+        favoriteType = FavoriteType.MOVIE
+
         detailMovieLiveData.setLoading()
 
         detailMovieUseCase.execute(
@@ -48,6 +57,9 @@ class DetailMovieViewModel @Inject constructor(
     }
 
     fun getDetailTvShowResult(tvShowId: Int) {
+        itemId = tvShowId
+        favoriteType = FavoriteType.TV_SHOW
+
         detailMovieLiveData.setLoading()
 
         detailTvShowUseCase.execute(
@@ -65,23 +77,38 @@ class DetailMovieViewModel @Inject constructor(
         ).track()
     }
 
-    fun getFavorit(id: Int) {
+    fun getFavorite(id: Int) {
         getFavoriteUseCase.execute(
             mapOf(
                 GetFavoriteUseCase.movieId to id
             )
         ).subscribe(
             {
-                Timber.e("FavoriteTable $it")
                 if (it.itemId == id.toString()){
                     isFavoriteLiveData.value = true
                 }
             },
             {
-                Timber.e("error $it")
                 if (it is EmptyResultSetException){
                     isFavoriteLiveData.value = false
                 }
+            }
+        ).track()
+    }
+
+    fun setFavorite() {
+        setFavoriteUseCase.execute(
+            mapOf(
+                SetFavoriteUseCase.itemId to itemId,
+                SetFavoriteUseCase.itemType to favoriteType
+            )
+        ).subscribe (
+            {
+                Timber.e("success $it")
+                isFavoriteLiveData.value = it
+            },
+            {
+                Timber.e("error : $it")
             }
         ).track()
     }

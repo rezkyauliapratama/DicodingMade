@@ -38,7 +38,7 @@ class DetailMovieActivity : BaseViewModelActivity<DetailMovieViewModel>() {
         val detailType =
             intent.getSerializableExtra(Activities.DetailMovie.bundleSecondKey) as Activities.DetailMovie.DetailType
 
-        if (id > 0 && savedInstanceState == null){
+        if (id > 0 && savedInstanceState == null) {
 
             mId = id
             mType = detailType
@@ -55,7 +55,7 @@ class DetailMovieActivity : BaseViewModelActivity<DetailMovieViewModel>() {
 
             }
 
-            viewModel.getFavorit(id)
+            viewModel.getFavorite(id)
         }
 
     }
@@ -70,8 +70,9 @@ class DetailMovieActivity : BaseViewModelActivity<DetailMovieViewModel>() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         savedInstanceState?.run {
-            mId = this.getInt(Activities.DetailMovie.bundleFirstKey,0)
-            mType = this.getSerializable(Activities.DetailMovie.bundleSecondKey) as Activities.DetailMovie.DetailType
+            mId = this.getInt(Activities.DetailMovie.bundleFirstKey, 0)
+            mType =
+                this.getSerializable(Activities.DetailMovie.bundleSecondKey) as Activities.DetailMovie.DetailType
             viewModel.restoreInstanceState(savedInstanceState)
         }
     }

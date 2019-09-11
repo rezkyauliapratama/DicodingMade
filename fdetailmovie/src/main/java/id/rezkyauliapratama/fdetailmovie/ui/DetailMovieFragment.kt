@@ -20,7 +20,7 @@ import java.lang.ref.WeakReference
 import id.innovation.libcore.di.helper.CoreInjectHelper
 import id.innovation.libcore.di.module.PresenterModule
 
-class DetailMovieFragment : BaseFragment() {
+class DetailMovieFragment : BaseFragment(), View.OnClickListener {
 
     private fun sharedViweModel(): DetailMovieViewModel {
         return ViewModelProviders.of(
@@ -32,6 +32,11 @@ class DetailMovieFragment : BaseFragment() {
 
     override fun getContentResource(): Int {
         return R.layout.fragment_detail_movie
+    }
+
+    override fun initViews() {
+        super.initViews()
+        ivFavorite.setOnClickListener(this)
     }
 
     override fun injectDagger() {
@@ -98,4 +103,13 @@ class DetailMovieFragment : BaseFragment() {
             }
         )
     }
+
+    override fun onClick(v: View?) {
+        when (v){
+            ivFavorite -> {
+                sharedViweModel().setFavorite()
+            }
+        }
+    }
+
 }

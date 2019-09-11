@@ -10,28 +10,23 @@ import java.io.Serializable
 
 @Entity(tableName = TABLE_NAME)
 data class FavoriteTable(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = Column.ID)
-    val id: Long,
+    @PrimaryKey
+    @ColumnInfo(name = Column.ITEM_ID)
+    var itemId: String = "",
 
     @ColumnInfo(name = Column.ITEM_TYPE)
-    val itemType: FavoriteType,
-
-    @ColumnInfo(name = Column.ITEM_ID)
-    val itemId: String
+    val itemType: FavoriteType
 ) {
 
     companion object {
         const val TABLE_NAME = "favorite"
 
         object Column {
-            const val ID = "id"
             const val ITEM_ID = "item_id"
             const val ITEM_TYPE = "item_type"
         }
     }
 }
-
 
 class StatusConverter : Serializable {
 

@@ -7,8 +7,7 @@ import id.innovation.libdatabase.entity.FavoriteTable
 import id.innovation.libdatabase.entity.FavoriteTable.Companion.Column.ITEM_ID
 import id.innovation.libdatabase.entity.FavoriteTable.Companion.Column.ITEM_TYPE
 import id.innovation.libdatabase.entity.FavoriteTable.Companion.TABLE_NAME
-import id.innovation.libdatabase.entity.FavoriteType
-import io.reactivex.Maybe
+import io.reactivex.Completable
 import io.reactivex.Single
 
 @Dao
@@ -27,7 +26,7 @@ interface FavoriteDao : BaseDao<FavoriteTable> {
     override fun deleteAll()
 
     @Query("DELETE FROM $TABLE_NAME where $ITEM_ID = :itemId")
-    fun deleteById(itemId: String)
+    fun deleteById(itemId: String): Completable
 
 }
 

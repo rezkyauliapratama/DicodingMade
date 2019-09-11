@@ -6,13 +6,17 @@ import id.rezkyauliapratama.fdetailmovie.data.entity.movie.DetailMovieDto
 import id.rezkyauliapratama.fdetailmovie.data.entity.tvshow.DetailTvDto
 import id.rezkyauliapratama.fdetailmovie.data.source.api.DetailContentApiDataSource
 import id.rezkyauliapratama.fdetailmovie.data.source.local.DetailContentLocalDataSource
-import io.reactivex.Maybe
+import io.reactivex.Completable
 import io.reactivex.Single
 
 class DataManagerImpl(
     private val apiDataSource: DetailContentApiDataSource,
     private val localDataSource: DetailContentLocalDataSource
 ) : DataManager {
+
+    override fun deleteFavorite(itemId: String): Completable {
+        return localDataSource.deleteFavorite(itemId)
+    }
 
     override fun getFavorite(itemId: String): Single<FavoriteTable> {
         return localDataSource.getFavorite(itemId)
