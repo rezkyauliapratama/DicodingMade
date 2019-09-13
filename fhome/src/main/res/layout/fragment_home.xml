@@ -14,33 +14,63 @@
     >
         <include layout="@layout/toolbar"/>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layoutTabLoan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:tabTextAppearance="@style/TextTabAppearance"/>
-
-            <androidx.viewpager.widget.ViewPager
+            <id.rezkyauliapratama.fhome.ui.common.view.SwipeLockableViewPager
                     android:id="@+id/vpContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@id/dividerBottom"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            <View
+                    android:id="@+id/dividerBottom"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-        </LinearLayout>
+                    android:layout_height="0.6dp"
+                    android:background="@color/greyish"
+                    app:layout_constraintBottom_toTopOf="@id/llBottomNavigation" />
+
+
+            <LinearLayout
+                    android:id="@+id/llBottomNavigation"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/space_50dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/space_50dp"
+                        android:background="@color/tab_background"
+                        app:itemIconTint="@color/bottom_nav_icon_tint"
+                        app:itemTextAppearanceActive="@style/BottomNavigationTextAppearance"
+                        app:itemTextAppearanceInactive="@style/BottomNavigationTextAppearance"
+                        app:itemTextColor="@color/greyish_brown_4a4a4a"
+                        app:menu="@menu/bottom_navigation" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabSetting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/dp_12"
-                android:src="@drawable/ic_settings_white_24dp"
+                android:layout_marginBottom="@dimen/dp_56"
+                android:layout_marginRight="@dimen/dp_12"
+                app:srcCompat="@drawable/ic_settings_white_24dp"
         />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

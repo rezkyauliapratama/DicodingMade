@@ -1,5 +1,6 @@
 package id.rezkyauliapratama.fhome.ui
 
+import androidx.fragment.app.Fragment
 import id.innovation.libcore.di.helper.CoreInjectHelper.provideCoreComponent
 import id.innovation.libcore.ui.controllers.BaseFragment
 import id.rezkyauliapratama.fhome.R
@@ -10,6 +11,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar.*
 import id.innovation.libuicomponent.R as R2
 import id.innovation.libcore.di.module.PresenterModule
+import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
+import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
 
 class HomeFragment : BaseFragment() {
 
@@ -18,7 +21,11 @@ class HomeFragment : BaseFragment() {
     }
 
     private val homePagerAdapter by lazy {
-        HomePagerAdapter(requireContext(), requireFragmentManager())
+        HomePagerAdapter(childFragmentManager).apply {
+            addFragment(PopularMovieFragment(), getString(R2.string.home_tab_movie))
+            addFragment(TvShowFragment(), getString(R2.string.home_tab_tv_show))
+            addFragment(Fragment(), getString(R2.string.home_tab_favorite))
+        }
     }
 
     override fun getContentResource(): Int {
@@ -38,19 +45,27 @@ class HomeFragment : BaseFragment() {
         super.initViews()
         tvTitle.setText(R2.string.home)
         vpContainer.adapter = homePagerAdapter
-        tabLayout.setupWithViewPager(vpContainer)
-
+        vpContainer.offscreenPageLimit = homePagerAdapter.count
+        tabLayout.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_tab_movie -> {
+                    vpContainer.setCurrentItem(0, false)
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.nav_tab_tv -> {
+                    vpContainer.setCurrentItem(1, false)
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.nav_tab_favorite -> {
+                    vpContainer.setCurrentItem(2, false)
+                    return@setOnNavigationItemSelectedListener true
+                }
+            }
+            false
+        }
         fabSetting.setOnClickListener {
             showDialogFragment(settingDialogBottomSheet, HomeActivity::class.java.simpleName.toString())
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
-
-    override fun onStop() {
-        super.onStop()
     }
 
 

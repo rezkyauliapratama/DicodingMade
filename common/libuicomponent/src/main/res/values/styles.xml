@@ -72,4 +72,9 @@
         <item name="android:colorBackground">@android:color/transparent</item>
     </style>
 
+    <style name="BottomNavigationTextAppearance" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/greyish_brown_4a4a4a</item>
+    </style>
+
 </resources>
