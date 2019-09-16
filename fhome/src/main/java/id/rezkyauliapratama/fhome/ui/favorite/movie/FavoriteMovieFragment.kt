@@ -1,4 +1,4 @@
-package id.rezkyauliapratama.fhome.ui.favorite.tvshow
+package id.rezkyauliapratama.fhome.ui.favorite.movie
 
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,17 +13,19 @@ import id.innovation.libnavigation.intentTo
 import id.innovation.libuicomponent.common.ProgressDialogUtil
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
+import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
 import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
 import id.rezkyauliapratama.fhome.ui.favorite.FavoriteViewModel
+import id.rezkyauliapratama.fhome.ui.favorite.movie.adapter.FavoriteMovieAdapter
 import id.rezkyauliapratama.fhome.ui.favorite.tvshow.adapter.FavoriteTvShowAdapter
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import java.lang.ref.WeakReference
 import javax.inject.Inject
 
-class FavoriteTvShowFragment : BaseViewModelFragment<FavoriteViewModel>() {
+class FavoriteMovieFragment : BaseViewModelFragment<FavoriteViewModel>() {
 
     @Inject
-    lateinit var adapter: FavoriteTvShowAdapter
+    lateinit var adapter: FavoriteMovieAdapter
 
 
     override fun buildViewModel(): FavoriteViewModel {
@@ -49,10 +51,10 @@ class FavoriteTvShowFragment : BaseViewModelFragment<FavoriteViewModel>() {
 
     override fun initLiveDataObservers() {
         super.initLiveDataObservers()
-        viewModel.tvShowFavoritesLiveData.observe(viewLifecycleOwner, SafeObserver(::handleSuccess))
+        viewModel.movieFavoritesLiveData.observe(viewLifecycleOwner, SafeObserver(::handleSuccess))
     }
 
-    private fun handleSuccess(resource: Resource<List<TvShowResult>>) {
+    private fun handleSuccess(resource: Resource<List<PopularMovieResult>>) {
         when (resource.state) {
             ResourceState.LOADING -> {
                 ProgressDialogUtil.showProgressDialog(
@@ -89,7 +91,7 @@ class FavoriteTvShowFragment : BaseViewModelFragment<FavoriteViewModel>() {
         intent.putExtra(Activities.DetailMovie.bundleFirstKey, tvShowId)
         intent.putExtra(
             Activities.DetailMovie.bundleSecondKey,
-            Activities.DetailMovie.DetailType.TV
+            Activities.DetailMovie.DetailType.MOVIE
         )
         startActivity(intent)
     }

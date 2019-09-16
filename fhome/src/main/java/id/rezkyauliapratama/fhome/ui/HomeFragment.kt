@@ -13,6 +13,7 @@ import id.innovation.libuicomponent.R as R2
 import id.innovation.libcore.di.module.PresenterModule
 import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
 import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
+import id.rezkyauliapratama.fhome.ui.favorite.FavoriteFragment
 
 class HomeFragment : BaseFragment() {
 
@@ -24,7 +25,7 @@ class HomeFragment : BaseFragment() {
         HomePagerAdapter(childFragmentManager).apply {
             addFragment(PopularMovieFragment(), getString(R2.string.home_tab_movie))
             addFragment(TvShowFragment(), getString(R2.string.home_tab_tv_show))
-            addFragment(Fragment(), getString(R2.string.home_tab_favorite))
+            addFragment(FavoriteFragment(), getString(R2.string.home_tab_favorite))
         }
     }
 

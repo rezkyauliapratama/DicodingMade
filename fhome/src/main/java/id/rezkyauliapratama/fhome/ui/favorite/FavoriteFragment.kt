@@ -6,11 +6,16 @@ import id.innovation.libcore.di.module.PresenterModule
 import id.innovation.libcore.ui.controllers.BaseViewModelFragment
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
+import id.rezkyauliapratama.fhome.ui.favorite.pager.FavoritePagerAdapter
+import kotlinx.android.synthetic.main.fragment_favorite.*
 
 class FavoriteFragment : BaseViewModelFragment<FavoriteViewModel>() {
 
     override fun buildViewModel(): FavoriteViewModel {
-        return ViewModelProviders.of(this)[FavoriteViewModel::class.java]
+        return ViewModelProviders.of(
+            requireActivity(),
+            mViewModelFactory
+        )[FavoriteViewModel::class.java]
     }
 
     override fun getContentResource(): Int = R.layout.fragment_favorite
@@ -28,6 +33,14 @@ class FavoriteFragment : BaseViewModelFragment<FavoriteViewModel>() {
             .inject(this)
     }
 
+    private val favoritePagerAdapter by lazy {
+        FavoritePagerAdapter(requireContext(), childFragmentManager)
+    }
 
-
+    override fun initViews() {
+        super.initViews()
+        vpContainer.adapter = favoritePagerAdapter
+        vpContainer.offscreenPageLimit = favoritePagerAdapter.count
+        tabLayout.setupWithViewPager(vpContainer)
+    }
 }

@@ -21,6 +21,7 @@ class FavoriteViewModel @Inject constructor(
     override fun loadPage(multipleTimes: Boolean?) {
         super.loadPage(multipleTimes)
         getMovieFavorites()
+        getTvShowFavorite()
     }
 
     internal val movieFavoritesLiveData = SingleLiveEvent<Resource<List<PopularMovieResult>>>()
@@ -40,6 +41,15 @@ class FavoriteViewModel @Inject constructor(
     }
 
     private fun getTvShowFavorite() {
-
+        tvShowFavoriteUseCase.execute().doOnSubscribe {
+            tvShowFavoritesLiveData.setLoading()
+        }.subscribe(
+            {
+                tvShowFavoritesLiveData.setSuccess(it)
+            },
+            {
+                tvShowFavoritesLiveData.setError(it)
+            }
+        ).track()
     }
 }

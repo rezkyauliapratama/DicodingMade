@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import id.rezkyauliapratama.fhome.ui.favorite.movie.FavoriteMovieFragment
+import id.rezkyauliapratama.fhome.ui.favorite.tvshow.FavoriteTvShowFragment
 import id.innovation.libuicomponent.R as R2
 
 class FavoritePagerAdapter(
@@ -12,7 +14,7 @@ class FavoritePagerAdapter(
 ) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val fragments by lazy {
-        listOf(Fragment(), Fragment())
+        listOf(FavoriteMovieFragment(), FavoriteTvShowFragment())
     }
 
     companion object {
@@ -29,7 +31,7 @@ class FavoritePagerAdapter(
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
             MOVIE -> context.getString(R2.string.home_tab_movie)
-            TV-> context.getString(R2.string.home_tab_tv_show)
+            TV -> context.getString(R2.string.home_tab_tv_show)
             else -> throw IndexOutOfBoundsException("Tab position is $position when the tabs count is $count")
         }
     }

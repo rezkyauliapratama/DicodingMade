@@ -55,16 +55,14 @@ data class DetailMovieDto(
     val voteAverage: Double = 0.0,
     @Json(name = "vote_count")
     val voteCount: Int = 0
-) {
-
-    fun DetailMovieDto.mapToDomain(): DetailContentModel =
-        DetailContentModel(
-            id = id,
-            title = originalTitle,
-            backdropPath = backdropPath,
-            posterPath = posterPath ?: "",
-            overview = overview,
-            popularity = voteAverage,
-            releaseDate = releaseDate
-        )
-}
+)
+fun DetailMovieDto.mapToDomain(): DetailContentModel =
+    DetailContentModel(
+        id = id,
+        title = originalTitle,
+        backdropPath = backdropPath,
+        posterPath = posterPath ?: "",
+        overview = overview,
+        popularity = voteAverage,
+        releaseDate = releaseDate
+    )
