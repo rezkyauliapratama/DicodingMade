@@ -17,7 +17,7 @@ interface FavoriteDao : BaseDao<FavoriteTable> {
     fun getItemById(itemId: String): Single<FavoriteTable>
 
     @Query("SELECT * FROM $TABLE_NAME WHERE $ITEM_TYPE = :itemType")
-    fun getItemByType(itemType: Int): Single<FavoriteTable>
+    fun getItemByType(itemType: Int): Single<List<FavoriteTable>>
 
     @Query("SELECT * FROM $TABLE_NAME")
     override fun getItems(): Single<List<FavoriteTable>>

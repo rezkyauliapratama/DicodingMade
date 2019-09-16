@@ -17,13 +17,11 @@ abstract class BaseViewModel : ViewModel() {
      * @param multipleTimes (OPTIONAL) set it to true to make multiple call capability
      */
     @CallSuper
-    open fun loadPage(multipleTimes: Boolean? = false) : Boolean {
+    open fun loadPage(multipleTimes: Boolean? = false) {
         if (!isFirst && multipleTimes != true) {
-            return false
+            return
         }
-
         isFirst = false
-        return true
     }
 
     val compositeDisposable = CompositeDisposable()

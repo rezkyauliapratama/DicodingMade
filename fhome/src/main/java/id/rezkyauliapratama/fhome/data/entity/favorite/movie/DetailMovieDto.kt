@@ -1,8 +1,8 @@
-package id.rezkyauliapratama.fdetailmovie.data.entity.movie
+package id.rezkyauliapratama.fhome.data.entity.favorite.movie
 
 
 import com.squareup.moshi.Json
-import id.rezkyauliapratama.fdetailmovie.domain.entity.DetailContentModel
+import id.rezkyauliapratama.fhome.domain.entity.MovieModel
 
 data class DetailMovieDto(
     @Json(name = "adult")
@@ -55,16 +55,20 @@ data class DetailMovieDto(
     val voteAverage: Double = 0.0,
     @Json(name = "vote_count")
     val voteCount: Int = 0
-) {
+)
 
-    fun DetailMovieDto.mapToDomain(): DetailContentModel =
-        DetailContentModel(
-            id = id,
-            title = originalTitle,
-            backdropPath = backdropPath,
-            posterPath = posterPath ?: "",
-            overview = overview,
-            popularity = voteAverage,
-            releaseDate = releaseDate
-        )
-}
+fun DetailMovieDto.mapToDomain(): MovieModel =
+    MovieModel(
+        id = id,
+        backdropPath = backdropPath,
+        genreIds = listOf(),
+        originalTitle = originalTitle,
+        overview = overview,
+        popularity = voteAverage,
+        posterPath = posterPath,
+        releaseDate = releaseDate,
+        video = video,
+        voteAverage = voteAverage,
+        voteCount = voteCount
+    )
+
