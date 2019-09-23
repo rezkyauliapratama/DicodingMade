@@ -9,4 +9,6 @@ interface MovieRepository {
     fun getTvShows(pageNum: Int): Single<List<TvShowModel>>
     fun getMovieFavorites(): Single<List<MovieModel>>
     fun getTvShowFavorites(): Single<List<TvShowModel>>
+    fun getMoviesSearch(pageNum: Int, query: String): Single<List<MovieModel>>
+    fun getTvShowSearch(query: String): Single<List<TvShowModel>>
 }

@@ -20,6 +20,7 @@ class MovieRepositoryImpl @Inject constructor(
     private val context: Context,
     private val dataManager: DataManager
 ) : MovieRepository {
+
     override fun getTvShowFavorites(): Single<List<TvShowModel>> {
         return dataManager.getFavorite(FavoriteType.TV_SHOW.code).flatMapObservable {
             Observable.fromIterable(it)
@@ -56,4 +57,20 @@ class MovieRepositoryImpl @Inject constructor(
             }
     }
 
+    override fun getMoviesSearch(pageNum: Int, query: String): Single<List<MovieModel>> {
+        return dataManager.getPopularMoviesSearch(
+            query,
+            pageNum,
+            LocaleManager.getLanguagePref(context)
+        ).map {
+            it.mapToMovieDomain()
+        }
+    }
+
+    override fun getTvShowSearch(query: String): Single<List<TvShowModel>> {
+        return dataManager.getTvShowsSearch(query, LocaleManager.getLanguagePref(context))
+            .map {
+                it.mapToTvShowDomain()
+            }
+    }
 }

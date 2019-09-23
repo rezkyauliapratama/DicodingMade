@@ -3,9 +3,12 @@ package id.innovation.libcore.ui.controllers
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import id.innovation.libcore.ui.viewmodels.BaseViewModel
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 abstract class BaseViewModelActivity<VIEWMODEL : BaseViewModel>
     : BaseActivity() {
+
 
     protected val viewModel by lazy { buildViewModel() }
 
@@ -26,5 +29,15 @@ abstract class BaseViewModelActivity<VIEWMODEL : BaseViewModel>
     @CallSuper
     protected open fun initLiveDataObservers() = Unit
 
+    val compositeDisposable = CompositeDisposable()
+
+    protected fun Disposable.track() {
+        compositeDisposable.add(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        compositeDisposable.dispose()
+    }
 
 }

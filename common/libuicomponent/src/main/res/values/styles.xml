@@ -10,15 +10,19 @@
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="actionMenuTextColor">@color/white</item>
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left</item>
+        <item name="titleTextAppearance">@style/TextAppearance.ActionBar.Title</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.ActionBar.Title</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <!--Toolbar-->
     <style name="AppToolbar" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="titleTextAppearance">@style/TextAppearance.ActionBar.Title</item>
-        <item name="subtitleTextAppearance">@style/TextAppearance.ActionBar.Title</item>
         <item name="android:fontFamily">@font/opensans_semibold</item>
         <item name="contentInsetStartWithNavigation">@dimen/dp_0</item>
         <item name="contentInsetEnd">16dp</item>
@@ -61,7 +65,7 @@
     </style>
 
     <!--tablayout-->
-    <style name="TextTabAppearance" >
+    <style name="TextTabAppearance">
         <item name="android:textSize">17sp</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:textAllCaps">false</item>

@@ -1,21 +1,40 @@
 package id.rezkyauliapratama.fhome.ui
 
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import id.innovation.libcore.di.helper.CoreInjectHelper.provideCoreComponent
+import id.innovation.libcore.di.module.PresenterModule
 import id.innovation.libcore.ui.controllers.BaseFragment
+import id.innovation.libcore.ui.controllers.BaseViewModelFragment
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
 import id.rezkyauliapratama.fhome.ui.bottomsheet.SettingBottomSheetDialog
+import id.rezkyauliapratama.fhome.ui.favorite.FavoriteFragment
 import id.rezkyauliapratama.fhome.ui.pager.HomePagerAdapter
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.toolbar.*
-import id.innovation.libuicomponent.R as R2
-import id.innovation.libcore.di.module.PresenterModule
 import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
 import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
-import id.rezkyauliapratama.fhome.ui.favorite.FavoriteFragment
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.toolbar.*
+import timber.log.Timber
+import id.innovation.libuicomponent.R as R2
+import id.innovation.libcore.ui.common.SafeObserver
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
+
+    private var selectedFragment: Fragment? = null
+
+
+    override fun buildViewModel(): HomeViewModel {
+        return ViewModelProviders.of(
+            requireActivity(),
+            mViewModelFactory
+        )[HomeViewModel::class.java]
+    }
 
     private val settingDialogBottomSheet by lazy {
         SettingBottomSheetDialog()
@@ -27,6 +46,11 @@ class HomeFragment : BaseFragment() {
             addFragment(TvShowFragment(), getString(R2.string.home_tab_tv_show))
             addFragment(FavoriteFragment(), getString(R2.string.home_tab_favorite))
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
     }
 
     override fun getContentResource(): Int {
@@ -44,28 +68,63 @@ class HomeFragment : BaseFragment() {
 
     override fun initViews() {
         super.initViews()
-        tvTitle.setText(R2.string.home)
         vpContainer.adapter = homePagerAdapter
         vpContainer.offscreenPageLimit = homePagerAdapter.count
         tabLayout.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_tab_movie -> {
                     vpContainer.setCurrentItem(0, false)
+                    setSearchView(0)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.nav_tab_tv -> {
                     vpContainer.setCurrentItem(1, false)
+                    setSearchView(1)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.nav_tab_favorite -> {
                     vpContainer.setCurrentItem(2, false)
+                    setSearchView(2)
                     return@setOnNavigationItemSelectedListener true
                 }
             }
             false
         }
+
         fabSetting.setOnClickListener {
-            showDialogFragment(settingDialogBottomSheet, HomeActivity::class.java.simpleName.toString())
+            showDialogFragment(
+                settingDialogBottomSheet,
+                HomeActivity::class.java.simpleName.toString()
+            )
+        }
+    }
+
+    override fun initLiveDataObservers() {
+        super.initLiveDataObservers()
+        viewModel.queryLiveData.observe(viewLifecycleOwner, SafeObserver(::queryResult))
+    }
+
+    private fun queryResult(query: String) {
+        if (selectedFragment is PopularMovieFragment){
+            Timber.e("$selectedFragment | $query")
+            viewModel.setSearchMovie(query)
+        }else if (selectedFragment is TvShowFragment) {
+            viewModel.setSearchTvShow(query)
+        }
+    }
+
+    private fun setSearchView(position: Int){
+        selectedFragment = homePagerAdapter.getItem(position)
+        when (position){
+            1 -> {
+               viewModel.setSearchView(View.VISIBLE)
+            }
+            2 -> {
+                viewModel.setSearchView(View.VISIBLE)
+            }
+            3 -> {
+                viewModel.setSearchView(View.GONE)
+            }
         }
     }
 

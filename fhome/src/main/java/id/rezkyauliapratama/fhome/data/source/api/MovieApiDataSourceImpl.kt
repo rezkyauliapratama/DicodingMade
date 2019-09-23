@@ -15,7 +15,6 @@ class MovieApiDataSourceImpl(
     private val detailTVShowApi: DetailTvShowApi
 ) : MovieApiDataSource {
 
-
     override fun getDetailTvShow(tvShowId: Int, language: String): Single<DetailTvDto> =
         detailTVShowApi.getDetailTvShow(tvShowId, language = language)
 
@@ -33,6 +32,23 @@ class MovieApiDataSourceImpl(
         movieApi.getMovies(pageNumber = pageNum, language = language)
             .map {
                 it.moviesDto
+            }
+
+    override fun getPopularMoviesSearch(
+        query: String,
+        pageNum: Int,
+        language: String
+    ): Single<List<MovieDtoBean>> =
+        movieApi.getMoviesSearch(query = query, language = language, pageNumber = pageNum)
+            .map {
+                it.moviesDto
+            }
+
+
+    override fun getTvShowsSearch(query: String, language: String): Single<List<TvShowDtoBean>> =
+        movieApi.getTvShowsSearch(query = query, language = language)
+            .map {
+                it.results
             }
 
 }

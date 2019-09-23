@@ -12,5 +12,11 @@ interface MovieApiDataSource {
     fun getTvShows(pageNum: Int, language: String): Single<List<TvShowDtoBean>>
     fun getDetailMovie(movieId: Int, language: String): Single<DetailMovieDto>
     fun getDetailTvShow(tvShowId: Int, language: String): Single<DetailTvDto>
+    fun getPopularMoviesSearch(
+        query: String, pageNum: Int,
+        language: String
+    ): Single<List<MovieDtoBean>>
+
+    fun getTvShowsSearch(query: String, language: String): Single<List<TvShowDtoBean>>
 
 }

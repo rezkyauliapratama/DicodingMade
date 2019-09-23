@@ -9,8 +9,9 @@
     </dist:module>
 
     <application
-            android:name="id.rezkyauliapratama.dicodingmade.App">
-        <activity
+            android:name="id.rezkyauliapratama.dicodingmade.App"
+            android:theme="@style/AppTheme">
+    <activity
                 android:parentActivityName="id.rezkyauliapratama.dicodingmade.MainActivity"
                 android:name="id.rezkyauliapratama.fdetailmovie.ui.DetailMovieActivity">
             <intent-filter>

@@ -5,6 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import id.innovation.libcore.di.annotation.ViewModelKey
+import id.rezkyauliapratama.fhome.ui.HomeViewModel
 import id.rezkyauliapratama.fhome.ui.favorite.FavoriteViewModel
 import id.rezkyauliapratama.fhome.ui.popularmovie.viewmodel.PopularMovieViewModel
 import id.rezkyauliapratama.fhome.ui.tvshow.viewmodel.TvShowViewModel
@@ -26,5 +27,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(FavoriteViewModel::class)
     abstract fun bindFavoriteViewModel(viewModel: FavoriteViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel::class)
+    abstract fun bindHomeViewModel(viewModel: HomeViewModel): ViewModel
 
 }

@@ -13,6 +13,7 @@ import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
 import id.rezkyauliapratama.fhome.ui.popularmovie.adapter.entity.RowMovieResult
 import kotlinx.android.synthetic.main.list_item_movie.view.*
 import kotlinx.android.synthetic.main.widget_progressbar.view.*
+import timber.log.Timber
 import javax.inject.Inject
 import id.innovation.libuicomponent.R as R2
 

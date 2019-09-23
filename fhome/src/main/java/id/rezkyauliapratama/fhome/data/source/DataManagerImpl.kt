@@ -14,6 +14,17 @@ class DataManagerImpl(
     private val apiDataSource: MovieApiDataSource,
     private val localDataSource: MovieLocalDataSource
 ) : DataManager {
+    override fun getPopularMoviesSearch(
+        query: String,
+        pageNum: Int,
+        language: String
+    ): Single<List<MovieDtoBean>> {
+        return apiDataSource.getPopularMoviesSearch(query, pageNum, language)
+    }
+
+    override fun getTvShowsSearch(query: String, language: String): Single<List<TvShowDtoBean>> {
+        return apiDataSource.getTvShowsSearch(query, language)
+    }
 
     override fun getFavorite(type: Int): Single<List<FavoriteTable>> {
         return localDataSource.getFavorite(type)

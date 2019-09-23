@@ -4,14 +4,17 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import id.innovation.libcore.di.helper.CoreInjectHelper.provideCoreComponent
+import id.innovation.libcore.di.module.PresenterModule
 import id.innovation.libcore.ui.common.SafeObserver
 import id.innovation.libcore.ui.controllers.BaseViewModelFragment
 import id.innovation.libcore.ui.presenterstate.Resource
 import id.innovation.libcore.ui.presenterstate.ResourceState
+import id.innovation.libnavigation.Activities
 import id.innovation.libnavigation.intentTo
 import id.innovation.libuicomponent.common.ProgressDialogUtil
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
+import id.rezkyauliapratama.fhome.ui.HomeViewModel
 import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
 import id.rezkyauliapratama.fhome.ui.popularmovie.adapter.PopularMovieAdapter
 import id.rezkyauliapratama.fhome.ui.popularmovie.viewmodel.PopularMovieViewModel
@@ -19,14 +22,15 @@ import kotlinx.android.synthetic.main.fragment_movie_list.*
 import timber.log.Timber
 import java.lang.ref.WeakReference
 import javax.inject.Inject
-import id.innovation.libnavigation.Activities
-import id.innovation.libcore.di.module.PresenterModule
 
 class PopularMovieFragment : BaseViewModelFragment<PopularMovieViewModel>() {
 
     @Inject
     lateinit var adapter: PopularMovieAdapter
 
+    val shareViewModel by lazy {
+        ViewModelProviders.of(requireActivity(), mViewModelFactory)[HomeViewModel::class.java]
+    }
 
     override fun buildViewModel(): PopularMovieViewModel {
         return ViewModelProviders.of(this, mViewModelFactory)[PopularMovieViewModel::class.java]
@@ -57,6 +61,19 @@ class PopularMovieFragment : BaseViewModelFragment<PopularMovieViewModel>() {
             viewLifecycleOwner,
             SafeObserver(this::handleStateResult)
         )
+        shareViewModel.searchMovieLiveData.observe(
+            viewLifecycleOwner,
+            SafeObserver(this::handleSearchMoviesResult)
+        )
+    }
+
+    private fun handleSearchMoviesResult(query: String) {
+        viewModel.moviesList.removeObservers(viewLifecycleOwner)
+        viewModel.getState().removeObservers(viewLifecycleOwner)
+        viewModel.setQuery(query)
+
+        viewModel.moviesList.observeForever(SafeObserver(::handleMoviesResult))
+        viewModel.getState().observeForever(SafeObserver(::handleStateResult))
     }
 
 
@@ -80,18 +97,23 @@ class PopularMovieFragment : BaseViewModelFragment<PopularMovieViewModel>() {
         adapter.setOnClick(::onItemClick)
     }
 
-    private fun onItemClick(movieId:Int) {
+    private fun onItemClick(movieId: Int) {
         val intent = intentTo(
             requireContext(),
             addressableActivity = Activities.DetailMovie
         )
 
-        intent.putExtra(Activities.DetailMovie.bundleFirstKey,movieId)
-        intent.putExtra(Activities.DetailMovie.bundleSecondKey,Activities.DetailMovie.DetailType.MOVIE)
+        intent.putExtra(Activities.DetailMovie.bundleFirstKey, movieId)
+        intent.putExtra(
+            Activities.DetailMovie.bundleSecondKey,
+            Activities.DetailMovie.DetailType.MOVIE
+        )
         startActivity(intent)
     }
 
     private fun handleStateResult(resourceState: Resource<List<PopularMovieResult>>) {
+        Timber.e("handleStateResult : ${resourceState.state}")
+        if (resourceState.data != null)
         adapter.setResourceState(resourceState.state)
 
         when (resourceState.state) {
@@ -114,6 +136,7 @@ class PopularMovieFragment : BaseViewModelFragment<PopularMovieViewModel>() {
     }
 
     private fun handleMoviesResult(pagedList: PagedList<PopularMovieResult>) {
+        Timber.e("handleMovieREsutl")
         adapter.submitList(pagedList)
     }
 }
