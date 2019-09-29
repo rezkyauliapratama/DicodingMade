@@ -22,8 +22,12 @@ class DataManagerImpl(
         return apiDataSource.getPopularMoviesSearch(query, pageNum, language)
     }
 
-    override fun getTvShowsSearch(query: String, language: String): Single<List<TvShowDtoBean>> {
-        return apiDataSource.getTvShowsSearch(query, language)
+    override fun getTvShowsSearch(
+        query: String,
+        pageNum: Int,
+        language: String
+    ): Single<List<TvShowDtoBean>> {
+        return apiDataSource.getTvShowsSearch(query, pageNum, language)
     }
 
     override fun getFavorite(type: Int): Single<List<FavoriteTable>> {

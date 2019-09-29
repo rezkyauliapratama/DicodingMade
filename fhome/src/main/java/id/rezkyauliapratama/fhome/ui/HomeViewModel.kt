@@ -2,6 +2,7 @@ package id.rezkyauliapratama.fhome.ui
 
 import id.innovation.libcore.ui.viewmodels.BaseViewModel
 import id.innovation.libcore.ui.viewmodels.SingleLiveEvent
+import timber.log.Timber
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor() : BaseViewModel() {
@@ -12,6 +13,7 @@ class HomeViewModel @Inject constructor() : BaseViewModel() {
     internal val searchTvShowLiveData = SingleLiveEvent<String>()
 
     fun setQuery(query: String) {
+        Timber.e("query : $query")
         queryLiveData.value = query
     }
 

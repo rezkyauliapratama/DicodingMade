@@ -27,7 +27,7 @@ class PopularMovieViewModel @Inject constructor(
     var moviesList: LiveData<PagedList<PopularMovieResult>>
     val config: PagedList.Config
 
-    private lateinit var  popularMoviePagingDataSourceFactory : PopularMoviePagingDataSourceFactory
+    private lateinit var popularMoviePagingDataSourceFactory: PopularMoviePagingDataSourceFactory
 
     init {
         config = PagedList.Config.Builder()
@@ -61,7 +61,12 @@ class PopularMovieViewModel @Inject constructor(
     }
 
     private fun getPopularMoviePagingDataSourceFactory(searchQuery: String): PopularMoviePagingDataSourceFactory {
-        popularMoviePagingDataSourceFactory = PopularMoviePagingDataSourceFactory(compositeDisposable, getPopularMovie, getSearchUseCase, searchQuery)
+        popularMoviePagingDataSourceFactory = PopularMoviePagingDataSourceFactory(
+            compositeDisposable,
+            getPopularMovie,
+            getSearchUseCase,
+            searchQuery
+        )
         return popularMoviePagingDataSourceFactory
     }
 

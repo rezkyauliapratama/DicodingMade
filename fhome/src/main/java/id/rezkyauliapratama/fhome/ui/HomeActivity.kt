@@ -51,7 +51,7 @@ class HomeActivity : BaseViewModelActivity<HomeViewModel>() {
     }
 
     private fun changeStateResult(visible: Int) {
-        searchView?.setQuery("", false)
+        searchView?.setQuery("", true)
         searchView?.visibility = visible
     }
 

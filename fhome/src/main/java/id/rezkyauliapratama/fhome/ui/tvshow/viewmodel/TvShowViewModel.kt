@@ -6,14 +6,17 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import id.innovation.libcore.ui.presenterstate.Resource
 import id.innovation.libcore.ui.viewmodels.BaseViewModel
+import id.rezkyauliapratama.fhome.domain.usecase.TvShowSearchUseCase
 import id.rezkyauliapratama.fhome.domain.usecase.TvShowUsecase
 import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
 import id.rezkyauliapratama.fhome.ui.tvshow.pagination.TvShowPagingDataSource
 import id.rezkyauliapratama.fhome.ui.tvshow.pagination.TvShowPagingDataSourceFactory
+import timber.log.Timber
 import javax.inject.Inject
 
 class TvShowViewModel @Inject constructor(
-    private val getTvShowUseCase: TvShowUsecase
+    private val getTvShowUseCase: TvShowUsecase,
+    private val getSearchUseCase: TvShowSearchUseCase
 ) : BaseViewModel() {
 
 
@@ -21,19 +24,20 @@ class TvShowViewModel @Inject constructor(
         const val pageSize: Int = 5
     }
 
-    val tvShowList: LiveData<PagedList<TvShowResult>>
-    private val tvShowPagingDataSourceFactory: TvShowPagingDataSourceFactory =
-        TvShowPagingDataSourceFactory(compositeDisposable, getTvShowUseCase)
+    var tvShowList: LiveData<PagedList<TvShowResult>>
+    val config: PagedList.Config
+
+    private lateinit var tvShowPagingDataSourceFactory: TvShowPagingDataSourceFactory
 
     init {
-        val config = PagedList.Config.Builder()
+        config = PagedList.Config.Builder()
             .setPageSize(pageSize)
             .setInitialLoadSizeHint(pageSize * 2)
             .setEnablePlaceholders(false)
             .build()
 
         tvShowList = LivePagedListBuilder<Int, TvShowResult>(
-            tvShowPagingDataSourceFactory,
+            getTvShowPagingDataSourceFactory(""),
             config
         ).build()
     }
@@ -45,5 +49,25 @@ class TvShowViewModel @Inject constructor(
 
     fun listIsEmpty(): Boolean {
         return tvShowList.value?.isEmpty() ?: true
+    }
+
+    fun setQuery(query: String) {
+        Timber.e("setQuery : $query")
+        tvShowList = LivePagedListBuilder<Int, TvShowResult>(
+            getTvShowPagingDataSourceFactory(query),
+            config
+        ).build()
+
+    }
+
+    private fun getTvShowPagingDataSourceFactory(searchQuery: String): TvShowPagingDataSourceFactory {
+        tvShowPagingDataSourceFactory =
+            TvShowPagingDataSourceFactory(
+                compositeDisposable,
+                getTvShowUseCase,
+                getSearchUseCase,
+                searchQuery
+            )
+        return tvShowPagingDataSourceFactory
     }
 }

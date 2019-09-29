@@ -1,15 +1,12 @@
 package id.rezkyauliapratama.fhome.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import id.innovation.libcore.di.helper.CoreInjectHelper.provideCoreComponent
 import id.innovation.libcore.di.module.PresenterModule
-import id.innovation.libcore.ui.controllers.BaseFragment
+import id.innovation.libcore.ui.common.SafeObserver
 import id.innovation.libcore.ui.controllers.BaseViewModelFragment
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
@@ -19,10 +16,8 @@ import id.rezkyauliapratama.fhome.ui.pager.HomePagerAdapter
 import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
 import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.toolbar.*
 import timber.log.Timber
 import id.innovation.libuicomponent.R as R2
-import id.innovation.libcore.ui.common.SafeObserver
 
 class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
 
@@ -105,19 +100,18 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
     }
 
     private fun queryResult(query: String) {
-        if (selectedFragment is PopularMovieFragment){
-            Timber.e("$selectedFragment | $query")
+        if (selectedFragment is PopularMovieFragment) {
             viewModel.setSearchMovie(query)
-        }else if (selectedFragment is TvShowFragment) {
+        } else if (selectedFragment is TvShowFragment) {
             viewModel.setSearchTvShow(query)
         }
     }
 
-    private fun setSearchView(position: Int){
+    private fun setSearchView(position: Int) {
         selectedFragment = homePagerAdapter.getItem(position)
-        when (position){
+        when (position) {
             1 -> {
-               viewModel.setSearchView(View.VISIBLE)
+                viewModel.setSearchView(View.VISIBLE)
             }
             2 -> {
                 viewModel.setSearchView(View.VISIBLE)

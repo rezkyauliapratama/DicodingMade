@@ -67,9 +67,12 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getTvShowSearch(query: String): Single<List<TvShowModel>> {
-        return dataManager.getTvShowsSearch(query, LocaleManager.getLanguagePref(context))
-            .map {
+    override fun getTvShowSearch(pageNum: Int, query: String): Single<List<TvShowModel>> {
+        return dataManager.getTvShowsSearch(
+            query,
+            pageNum,
+            LocaleManager.getLanguagePref(context)
+        ).map {
                 it.mapToTvShowDomain()
             }
     }

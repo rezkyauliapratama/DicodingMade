@@ -45,8 +45,12 @@ class MovieApiDataSourceImpl(
             }
 
 
-    override fun getTvShowsSearch(query: String, language: String): Single<List<TvShowDtoBean>> =
-        movieApi.getTvShowsSearch(query = query, language = language)
+    override fun getTvShowsSearch(
+        query: String,
+        pageNum: Int,
+        language: String
+    ): Single<List<TvShowDtoBean>> =
+        movieApi.getTvShowsSearch(query = query, language = language, pageNumber = pageNum)
             .map {
                 it.results
             }

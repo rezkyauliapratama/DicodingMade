@@ -21,11 +21,16 @@ import kotlinx.android.synthetic.main.fragment_movie_list.*
 import timber.log.Timber
 import java.lang.ref.WeakReference
 import javax.inject.Inject
+import id.rezkyauliapratama.fhome.ui.HomeViewModel
 
 class TvShowFragment : BaseViewModelFragment<TvShowViewModel>() {
 
     @Inject
     lateinit var adapter: TvShowAdapter
+
+    val shareViewModel by lazy {
+        ViewModelProviders.of(requireActivity(), mViewModelFactory)[HomeViewModel::class.java]
+    }
 
 
     override fun buildViewModel(): TvShowViewModel {
@@ -57,8 +62,21 @@ class TvShowFragment : BaseViewModelFragment<TvShowViewModel>() {
             viewLifecycleOwner,
             SafeObserver(this::handleStateResult)
         )
+
+        shareViewModel.searchTvShowLiveData.observe(
+            viewLifecycleOwner,
+            SafeObserver(this::handleSearchTvShowsResult)
+        )
     }
 
+    private fun handleSearchTvShowsResult(query: String) {
+        viewModel.tvShowList.removeObservers(viewLifecycleOwner)
+        viewModel.getState().removeObservers(viewLifecycleOwner)
+        viewModel.setQuery(query)
+
+        viewModel.tvShowList.observeForever(SafeObserver(::handleTvShowResult))
+        viewModel.getState().observeForever(SafeObserver(::handleStateResult))
+    }
 
     override fun initViews() {
         super.initViews()
@@ -95,6 +113,8 @@ class TvShowFragment : BaseViewModelFragment<TvShowViewModel>() {
     }
 
     private fun handleStateResult(resourceState: Resource<List<TvShowResult>>) {
+        Timber.e("handleStateResult : ${resourceState.state}")
+        if (resourceState.data != null)
         adapter.setResourceState(resourceState.state)
 
         when (resourceState.state) {

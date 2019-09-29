@@ -34,6 +34,7 @@ interface MovieApi {
     @GET("search/tv")
     fun getTvShowsSearch(
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
+        @Query("page") pageNumber: Int?,
         @Query("language") language: String = "en-US",
         @Query("query") query: String
     ): Single<ListTvShowtDto>
