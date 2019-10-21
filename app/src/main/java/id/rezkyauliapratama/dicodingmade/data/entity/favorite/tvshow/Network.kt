@@ -1,4 +1,4 @@
-package id.rezkyauliapratama.fhome.data.entity.favorite.tvshow
+package id.rezkyauliapratama.dicodingmade.data.entity.favorite.tvshow
 
 
 import com.squareup.moshi.Json

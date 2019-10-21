@@ -1,7 +1,7 @@
-package id.rezkyauliapratama.fhome.data.api
+package id.rezkyauliapratama.dicodingmade.data.api
 
 import id.rezkyauliapratama.dicodingmade.BuildConfig
-import id.rezkyauliapratama.fhome.data.entity.favorite.movie.DetailMovieDto
+import id.rezkyauliapratama.dicodingmade.data.entity.favorite.movie.DetailMovieDto
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,19 +1,34 @@
-package id.rezkyauliapratama.fhome.data.source.api
+package id.rezkyauliapratama.dicodingmade.data.source.api
 
-import id.rezkyauliapratama.fhome.data.api.DetailMovieApi
-import id.rezkyauliapratama.fhome.data.api.DetailTvShowApi
-import id.rezkyauliapratama.fhome.data.api.MovieApi
-import id.rezkyauliapratama.fhome.data.entity.MovieDtoBean
-import id.rezkyauliapratama.fhome.data.entity.TvShowDtoBean
-import id.rezkyauliapratama.fhome.data.entity.favorite.movie.DetailMovieDto
-import id.rezkyauliapratama.fhome.data.entity.favorite.tvshow.DetailTvDto
+import id.rezkyauliapratama.dicodingmade.data.api.DetailMovieApi
+import id.rezkyauliapratama.dicodingmade.data.api.DetailTvShowApi
+import id.rezkyauliapratama.dicodingmade.data.api.MovieApi
+import id.rezkyauliapratama.dicodingmade.data.entity.MovieDtoBean
+import id.rezkyauliapratama.dicodingmade.data.entity.TvShowDtoBean
+import id.rezkyauliapratama.dicodingmade.data.entity.favorite.movie.DetailMovieDto
+import id.rezkyauliapratama.dicodingmade.data.entity.favorite.tvshow.DetailTvDto
 import io.reactivex.Single
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MovieApiDataSourceImpl(
     private val movieApi: MovieApi,
     private val detailMovieApi: DetailMovieApi,
     private val detailTVShowApi: DetailTvShowApi
 ) : MovieApiDataSource {
+
+    override fun getReleaseMovie(language: String): Single<List<MovieDtoBean>> {
+        val calendar = Calendar.getInstance()
+        val indonesianLocale = Locale("in", "ID")
+        val sdf = SimpleDateFormat("yyyy-MM-dd", indonesianLocale)
+
+        return movieApi.getReleaseMovies(
+            releaseDateGte = sdf.format(calendar.time),
+            releaseDateLte = sdf.format(calendar.time)
+        ).map {
+            it.moviesDto
+        }
+    }
 
     override fun getDetailTvShow(tvShowId: Int, language: String): Single<DetailTvDto> =
         detailTVShowApi.getDetailTvShow(tvShowId, language = language)

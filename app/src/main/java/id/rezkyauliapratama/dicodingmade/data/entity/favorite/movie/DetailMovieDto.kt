@@ -1,8 +1,7 @@
-package id.rezkyauliapratama.fhome.data.entity.favorite.movie
-
+package id.rezkyauliapratama.dicodingmade.data.entity.favorite.movie
 
 import com.squareup.moshi.Json
-import id.rezkyauliapratama.fhome.domain.entity.MovieModel
+import id.rezkyauliapratama.dicodingmade.domain.entity.MovieModel
 
 data class DetailMovieDto(
     @Json(name = "adult")
@@ -16,7 +15,7 @@ data class DetailMovieDto(
     @Json(name = "genres")
     val genres: List<Genre> = listOf(),
     @Json(name = "homepage")
-    val homepage: String = "",
+    val homepage: String? = "",
     @Json(name = "id")
     val id: Int = 0,
     @Json(name = "imdb_id")

@@ -1,9 +1,7 @@
-package id.rezkyauliapratama.fhome.data.entity
+package id.rezkyauliapratama.dicodingmade.data.entity
 
 import com.squareup.moshi.Json
-import id.rezkyauliapratama.fhome.domain.entity.MovieModel
-import id.rezkyauliapratama.fhome.domain.entity.TvShowModel
-
+import id.rezkyauliapratama.dicodingmade.domain.entity.MovieModel
 
 class ListMoviesDto(
     @Json(name = "page") val page: Int,

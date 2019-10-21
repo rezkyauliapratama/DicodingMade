@@ -1,8 +1,7 @@
-package id.rezkyauliapratama.fhome.data.entity.favorite.tvshow
-
+package id.rezkyauliapratama.dicodingmade.data.entity.favorite.tvshow
 
 import com.squareup.moshi.Json
-import id.rezkyauliapratama.fhome.domain.entity.TvShowModel
+import id.rezkyauliapratama.dicodingmade.domain.entity.TvShowModel
 
 data class DetailTvDto(
     @Json(name = "backdrop_path")
