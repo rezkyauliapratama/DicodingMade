@@ -1,10 +1,13 @@
 package id.rezkyauliapratama.fdetailmovie.ui
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import id.dicodingmade.fdetailmovie.R
-import id.innovation.libuicomponent.R as R2
+import id.innovation.libcore.di.helper.CoreInjectHelper
+import id.innovation.libcore.di.module.PresenterModule
 import id.innovation.libcore.ui.common.SafeObserver
 import id.innovation.libcore.ui.controllers.BaseFragment
 import id.innovation.libcore.ui.presenterstate.Resource
@@ -13,12 +16,13 @@ import id.innovation.libsharedata.entity.DetailMovieResult
 import id.innovation.libuicomponent.common.ProgressDialogUtil
 import id.innovation.libuicomponent.common.extension.loadImage
 import id.rezkyauliapratama.dicodingmade.BuildConfig
+import id.rezkyauliapratama.dicodingmade.widget.FavoritesWidget
 import id.rezkyauliapratama.fdetailmovie.di.DaggerFeatureComponent
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
 import timber.log.Timber
 import java.lang.ref.WeakReference
-import id.innovation.libcore.di.helper.CoreInjectHelper
-import id.innovation.libcore.di.module.PresenterModule
+import id.innovation.libuicomponent.R as R2
+import id.rezkyauliapratama.dicodingmade.R as R3
 
 class DetailMovieFragment : BaseFragment(), View.OnClickListener {
 
@@ -56,15 +60,28 @@ class DetailMovieFragment : BaseFragment(), View.OnClickListener {
         )
 
         sharedViweModel().isFavoriteLiveData.observe(
-            viewLifecycleOwner,SafeObserver(this::handleFavorite)
+            viewLifecycleOwner, SafeObserver(this::handleFavorite)
         )
     }
 
     private fun handleFavorite(isFavorite: Boolean) {
-        if (isFavorite){
+        if (isFavorite) {
             ivFavorite.setImageResource(R2.drawable.ic_favorite_24dp)
         } else {
             ivFavorite.setImageResource(R2.drawable.ic_favorite_border_24dp)
+        }
+
+        AppWidgetManager.getInstance(requireContext()).apply {
+
+            val ids = getAppWidgetIds(
+                ComponentName(
+                    requireActivity().application,
+                    FavoritesWidget::class.java
+                )
+            )
+
+            Timber.e("appwidget id : $ids")
+            notifyAppWidgetViewDataChanged(ids, R3.id.stack_view)
         }
     }
 
@@ -105,7 +122,7 @@ class DetailMovieFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when (v){
+        when (v) {
             ivFavorite -> {
                 sharedViweModel().setFavorite()
             }

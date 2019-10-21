@@ -1,6 +1,5 @@
 package id.rezkyauliapratama.fhome.data
 
-import id.rezkyauliapratama.fhome.data.source.api.MovieApiDataSource
-import id.rezkyauliapratama.fhome.data.source.local.MovieLocalDataSource
+import id.rezkyauliapratama.fhome.data.source.local.AlarmLocalDataSource
 
-interface DataManager : MovieApiDataSource, MovieLocalDataSource
+interface DataManager : AlarmLocalDataSource

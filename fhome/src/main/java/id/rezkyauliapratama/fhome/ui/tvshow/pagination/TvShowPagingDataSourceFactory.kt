@@ -2,9 +2,9 @@ package id.rezkyauliapratama.fhome.ui.tvshow.pagination
 
 import androidx.paging.DataSource
 import id.innovation.libcore.ui.viewmodels.SingleLiveEvent
-import id.rezkyauliapratama.fhome.domain.usecase.TvShowSearchUseCase
-import id.rezkyauliapratama.fhome.domain.usecase.TvShowUsecase
-import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
+import id.rezkyauliapratama.dicodingmade.domain.usecase.TvShowSearchUseCase
+import id.rezkyauliapratama.dicodingmade.domain.usecase.TvShowUsecase
+import id.rezkyauliapratama.dicodingmade.presenter.entity.TvShowResult
 import io.reactivex.disposables.CompositeDisposable
 
 class TvShowPagingDataSourceFactory(

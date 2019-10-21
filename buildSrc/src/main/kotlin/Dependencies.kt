@@ -8,7 +8,7 @@ object Release {
 
     val compileSdkVersion = 28
     val targetSdkVersion = 28
-    val minSdkVersion = 17
+    val minSdkVersion = 23
 }
 
 object Config {
@@ -69,6 +69,9 @@ object Version {
 
     //stetho
     const val stethoVersion = "1.5.1"
+
+    //stetho
+    const val workManagerVersion = "2.1.0"
 }
 
 object Dependencies {
@@ -152,4 +155,8 @@ object Database {
     val roomCompiler = "androidx.room:room-compiler:${Version.roomVersion}"
     val roomRx = "androidx.room:room-rxjava2:${Version.roomVersion}"
     val stetho = "com.facebook.stetho:stetho:${Version.stethoVersion}"
+}
+
+object Scheduler {
+    val workManager = "androidx.work:work-runtime-ktx:${Version.workManagerVersion}"
 }

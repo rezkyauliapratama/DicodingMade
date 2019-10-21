@@ -9,7 +9,7 @@ import id.innovation.libcore.ui.common.inflate
 import id.innovation.libcore.ui.presenterstate.ResourceState
 import id.innovation.libuicomponent.common.extension.loadImage
 import id.rezkyauliapratama.fhome.R
-import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
+import id.rezkyauliapratama.dicodingmade.presenter.entity.PopularMovieResult
 import id.rezkyauliapratama.fhome.ui.popularmovie.adapter.entity.RowMovieResult
 import kotlinx.android.synthetic.main.list_item_movie.view.*
 import kotlinx.android.synthetic.main.widget_progressbar.view.*

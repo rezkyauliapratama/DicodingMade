@@ -16,7 +16,6 @@ import id.rezkyauliapratama.fhome.ui.pager.HomePagerAdapter
 import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
 import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
 import kotlinx.android.synthetic.main.fragment_home.*
-import timber.log.Timber
 import id.innovation.libuicomponent.R as R2
 
 class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
@@ -65,6 +64,7 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
         super.initViews()
         vpContainer.adapter = homePagerAdapter
         vpContainer.offscreenPageLimit = homePagerAdapter.count
+        selectedFragment = homePagerAdapter.getItem(0)
         tabLayout.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_tab_movie -> {

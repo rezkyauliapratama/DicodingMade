@@ -1,8 +1,8 @@
 package id.rezkyauliapratama.fhome.ui.tvshow.adapter.entity
 
 import id.rezkyauliapratama.dicodingmade.BuildConfig
-import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
-import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
+import id.rezkyauliapratama.dicodingmade.presenter.entity.PopularMovieResult
+import id.rezkyauliapratama.dicodingmade.presenter.entity.TvShowResult
 import javax.inject.Inject
 
 class RowTvShowResult(private val tvShowResult: TvShowResult) {

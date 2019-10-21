@@ -10,6 +10,8 @@ import android.widget.FrameLayout
 import android.widget.RadioGroup
 import androidx.annotation.Nullable
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -18,13 +20,25 @@ import id.innovation.libcore.di.helper.CoreInjectHelper.provideCoreComponent
 import id.innovation.libcore.di.module.PresenterModule
 import id.innovation.libuicomponent.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
-import kotlinx.android.synthetic.main.dialog_change_language.*
+import kotlinx.android.synthetic.main.dialog_setting.*
 import id.rezkyauliapratama.fhome.R as R2
+import id.rezkyauliapratama.fhome.ui.HomeViewModel
+import javax.inject.Inject
+import id.innovation.libcore.ui.common.SafeObserver
+import id.rezkyauliapratama.dicodingmade.service.AlarmService
+import timber.log.Timber
 
 class SettingBottomSheetDialog : BottomSheetDialogFragment(), View.OnClickListener,
     RadioGroup.OnCheckedChangeListener {
 
+    @Inject
+    lateinit var mViewModelFactory: ViewModelProvider.Factory
+
     var chooseLanguage: String = ""
+
+    val shareViewModel by lazy {
+        ViewModelProviders.of(requireActivity(), mViewModelFactory)[HomeViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +48,7 @@ class SettingBottomSheetDialog : BottomSheetDialogFragment(), View.OnClickListen
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R2.layout.dialog_change_language, container, false)
+        return inflater.inflate(R2.layout.dialog_setting, container, false)
     }
 
     override fun onViewCreated(view: View, @Nullable savedInstanceState: Bundle?) {
@@ -69,12 +83,43 @@ class SettingBottomSheetDialog : BottomSheetDialogFragment(), View.OnClickListen
 
     private fun initView() {
         rgLanguage.setOnCheckedChangeListener(this)
+        rgDailyReminder.setOnCheckedChangeListener(this)
+        rgReleaseReminder.setOnCheckedChangeListener(this)
 
         LocaleManager.getLanguagePref(requireContext()).apply {
             when (this) {
                 LocaleManager.INDONESIA -> rbIndonesia.isChecked = true
                 LocaleManager.ENGLISH -> rbEnglish.isChecked = true
             }
+        }
+
+        shareViewModel.dailyReminderLiveData.observe(requireActivity(), SafeObserver(::handleDailyReminder))
+        shareViewModel.releaseReminderLiveData.observe(requireActivity(), SafeObserver(::handleReleaseReminder))
+    }
+
+    private fun handleReleaseReminder(isActive: Boolean) {
+        if (isActive){
+            rbOnReleaseReminder.isChecked = true
+            val serviceIntent = Intent(context, AlarmService::class.java)
+            serviceIntent.putExtra(AlarmService.RELEASE_REMINDER_ACTIVE, isActive)
+            requireContext().startService(serviceIntent)
+        } else {
+            rbOffReleaseReminder.isChecked = true
+            AlarmService.cancelReleaseReminder(requireContext())
+        }
+
+    }
+
+    private fun handleDailyReminder(isActive: Boolean) {
+        Timber.e("handleDailyReminder : $isActive")
+        if (isActive){
+            rbOnDailyReminder.isChecked = true
+            val serviceIntent = Intent(context, AlarmService::class.java)
+            serviceIntent.putExtra(AlarmService.DAILY_REMINDER_ACTIVE, isActive)
+            requireContext().startService(serviceIntent)
+        } else {
+            rbOffDailyReminder.isChecked = true
+            AlarmService.cancelDailyReminder(requireContext())
         }
     }
 
@@ -94,12 +139,25 @@ class SettingBottomSheetDialog : BottomSheetDialogFragment(), View.OnClickListen
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
-        when (checkedId) {
-            rbEnglish.id -> {
+        Timber.e("checkId : ${checkedId}")
+        when  {
+            checkedId == rbEnglish.id && group == rgLanguage-> {
                 chooseLanguage = LocaleManager.ENGLISH
             }
-            rbIndonesia.id -> {
+            checkedId == rbIndonesia.id && group == rgLanguage -> {
                 chooseLanguage = LocaleManager.INDONESIA
+            }
+            checkedId == rbOffDailyReminder.id && group == rgDailyReminder-> {
+                shareViewModel.setStatusDailyReminder(false)
+            }
+            checkedId == rbOnDailyReminder.id && group == rgDailyReminder -> {
+                shareViewModel.setStatusDailyReminder(true)
+            }
+            checkedId == rbOffReleaseReminder.id && group == rgReleaseReminder -> {
+                shareViewModel.setStatusReleaseReminder(false)
+            }
+            checkedId == rbOnReleaseReminder.id && group == rgReleaseReminder  -> {
+                shareViewModel.setStatusReleaseReminder(true)
             }
         }
     }

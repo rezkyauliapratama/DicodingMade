@@ -6,9 +6,9 @@ import id.innovation.libcore.ui.common.setLoading
 import id.innovation.libcore.ui.common.setSuccess
 import id.innovation.libcore.ui.presenterstate.Resource
 import id.innovation.libcore.ui.viewmodels.SingleLiveEvent
-import id.rezkyauliapratama.fhome.domain.usecase.TvShowSearchUseCase
-import id.rezkyauliapratama.fhome.domain.usecase.TvShowUsecase
-import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
+import id.rezkyauliapratama.dicodingmade.domain.usecase.TvShowSearchUseCase
+import id.rezkyauliapratama.dicodingmade.domain.usecase.TvShowUsecase
+import id.rezkyauliapratama.dicodingmade.presenter.entity.TvShowResult
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber

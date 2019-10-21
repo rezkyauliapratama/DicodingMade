@@ -1,8 +1,11 @@
 package id.innovation.libcore.di
 
 import android.app.Application
+import android.content.Context
 import com.squareup.moshi.Moshi
 import dagger.Component
+import id.innovation.libcore.data.executors.SharedPref
+import id.innovation.libcore.di.annotation.ApplicationContext
 import id.innovation.libcore.di.module.CoreModule
 import id.innovation.libcore.di.module.SchedulersModule
 import id.innovation.libcore.domain.executors.PostExecutionThread
@@ -16,13 +19,16 @@ import javax.inject.Singleton
 @Component(modules = [SchedulersModule::class, CoreModule::class, NetworkModule::class, DatabaseModule::class])
 @Singleton
 interface CoreComponent {
+    @ApplicationContext
+    fun getApplicationContext(): Context
+
     fun getBaseResponse(): NetworkErrorInterface
     fun getThreadExecutor(): ThreadExecutor
     fun getPostExecutionThread(): PostExecutionThread
     fun getRetrofit(): Retrofit
     fun getMoshi(): Moshi
     fun getFavoriteDao(): FavoriteDao
-
+    fun getSharedPref(): SharedPref
     fun inject(app: Application)
 
     @Component.Builder

@@ -13,7 +13,7 @@ import id.innovation.libnavigation.intentTo
 import id.innovation.libuicomponent.common.ProgressDialogUtil
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
-import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
+import id.rezkyauliapratama.dicodingmade.presenter.entity.TvShowResult
 import id.rezkyauliapratama.fhome.ui.favorite.FavoriteViewModel
 import id.rezkyauliapratama.fhome.ui.favorite.tvshow.adapter.FavoriteTvShowAdapter
 import kotlinx.android.synthetic.main.fragment_movie_list.*

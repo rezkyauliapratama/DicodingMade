@@ -15,7 +15,7 @@ import id.innovation.libuicomponent.common.ProgressDialogUtil
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
 import id.rezkyauliapratama.fhome.ui.HomeViewModel
-import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
+import id.rezkyauliapratama.dicodingmade.presenter.entity.PopularMovieResult
 import id.rezkyauliapratama.fhome.ui.popularmovie.adapter.PopularMovieAdapter
 import id.rezkyauliapratama.fhome.ui.popularmovie.viewmodel.PopularMovieViewModel
 import kotlinx.android.synthetic.main.fragment_movie_list.*

@@ -1,18 +1,19 @@
 package id.rezkyauliapratama.fhome.ui
 
+import android.app.ActivityManager
+import android.content.Context
+import android.content.Intent
 import android.view.Menu
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
 import id.innovation.libcore.di.helper.CoreInjectHelper
 import id.innovation.libcore.di.module.PresenterModule
 import id.innovation.libcore.ui.common.SafeObserver
-import id.innovation.libcore.ui.controllers.BaseActivity
 import id.innovation.libcore.ui.controllers.BaseViewModelActivity
+import id.rezkyauliapratama.dicodingmade.service.AlarmService
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
 import id.rezkyauliapratama.fhome.ui.common.RxSearchObservable
-import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
-import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.toolbar.*
@@ -85,4 +86,14 @@ class HomeActivity : BaseViewModelActivity<HomeViewModel>() {
         return true
     }
 
+    private fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
+        val manager =
+            getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (service in manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.name == service.service.className) {
+                return true
+            }
+        }
+        return false
+    }
 }

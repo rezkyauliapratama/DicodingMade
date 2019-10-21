@@ -6,9 +6,9 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import id.innovation.libcore.ui.presenterstate.Resource
 import id.innovation.libcore.ui.viewmodels.BaseViewModel
-import id.rezkyauliapratama.fhome.domain.usecase.PopularMovieSearchUseCase
-import id.rezkyauliapratama.fhome.domain.usecase.PopularMovieUsecase
-import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
+import id.rezkyauliapratama.dicodingmade.domain.usecase.PopularMovieSearchUseCase
+import id.rezkyauliapratama.dicodingmade.domain.usecase.PopularMovieUsecase
+import id.rezkyauliapratama.dicodingmade.presenter.entity.PopularMovieResult
 import id.rezkyauliapratama.fhome.ui.popularmovie.pagination.PopularMoviePagingDataSource
 import id.rezkyauliapratama.fhome.ui.popularmovie.pagination.PopularMoviePagingDataSourceFactory
 import timber.log.Timber

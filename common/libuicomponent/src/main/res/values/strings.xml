@@ -35,5 +35,15 @@
     <string name="tv_hanna">This thriller and coming-of-age drama follows the journey of an extraordinary young girl as she evades the relentless pursuit of an off-book CIA agent and tries to unearth the truth behind who she is. Based on the 2011 Joe Wright film.</string>
     <string name="footer_message">No more data</string>
     <string name="home_tab_favorite">Favorite</string>
-
+    <string name="empty_text">No data</string>
+    <string name="favorite_movie">Favorite Movie</string>
+    <string name="Reminder">Reminder</string>
+    <string name="reminder_movie">Reminder Movie</string>
+    <string name="today_release">Today Release</string>
+    <string name="has_been_release_today">has been release today !</string>
+    <string name="language">Language</string>
+    <string name="release_reminder">Release reminder</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="daily_reminder">Daily reminder</string>
 </resources>

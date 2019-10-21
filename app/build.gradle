@@ -76,4 +76,9 @@ dependencies {
 
     //shimmer
     api Facebook.shimmer
+
+    implementation Image.glide
+    kapt Image.glideCompiler
+
+    implementation Scheduler.workManager
 }

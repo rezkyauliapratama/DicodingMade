@@ -1,7 +1,7 @@
 package id.rezkyauliapratama.fhome.ui.popularmovie.adapter.entity
 
 import id.rezkyauliapratama.dicodingmade.BuildConfig
-import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
+import id.rezkyauliapratama.dicodingmade.presenter.entity.PopularMovieResult
 import javax.inject.Inject
 
 class RowMovieResult(private val popularMovieResult: PopularMovieResult) {

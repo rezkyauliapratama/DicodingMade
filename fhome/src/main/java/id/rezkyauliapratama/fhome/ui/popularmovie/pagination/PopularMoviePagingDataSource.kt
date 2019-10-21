@@ -6,9 +6,9 @@ import id.innovation.libcore.ui.common.setLoading
 import id.innovation.libcore.ui.common.setSuccess
 import id.innovation.libcore.ui.presenterstate.Resource
 import id.innovation.libcore.ui.viewmodels.SingleLiveEvent
-import id.rezkyauliapratama.fhome.domain.usecase.PopularMovieSearchUseCase
-import id.rezkyauliapratama.fhome.domain.usecase.PopularMovieUsecase
-import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
+import id.rezkyauliapratama.dicodingmade.domain.usecase.PopularMovieSearchUseCase
+import id.rezkyauliapratama.dicodingmade.domain.usecase.PopularMovieUsecase
+import id.rezkyauliapratama.dicodingmade.presenter.entity.PopularMovieResult
 
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable

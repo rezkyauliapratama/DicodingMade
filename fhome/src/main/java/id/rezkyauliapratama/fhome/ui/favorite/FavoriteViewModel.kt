@@ -7,10 +7,10 @@ import id.innovation.libcore.ui.presenterstate.Resource
 import id.innovation.libcore.ui.viewmodels.BaseViewModel
 import id.innovation.libcore.ui.viewmodels.SingleLiveEvent
 import id.innovation.libdatabase.entity.FavoriteType
-import id.rezkyauliapratama.fhome.domain.usecase.MovieFavoritesUseCase
-import id.rezkyauliapratama.fhome.domain.usecase.TvShowFavoritesUseCase
-import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
-import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
+import id.rezkyauliapratama.dicodingmade.domain.usecase.MovieFavoritesUseCase
+import id.rezkyauliapratama.dicodingmade.domain.usecase.TvShowFavoritesUseCase
+import id.rezkyauliapratama.dicodingmade.presenter.entity.PopularMovieResult
+import id.rezkyauliapratama.dicodingmade.presenter.entity.TvShowResult
 import javax.inject.Inject
 
 class FavoriteViewModel @Inject constructor(

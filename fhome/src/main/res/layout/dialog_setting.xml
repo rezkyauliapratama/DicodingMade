@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/submissionThreeBottomSheet"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/bg_bottom_sheet"
+              android:orientation="vertical"
+              app:behavior_hideable="true"
+              android:paddingBottom="@dimen/dp_24"
+              app:behavior_peekHeight="0dp"
+              app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <View
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_6"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_12"
+            android:background="@drawable/shape_bottom_sheet_indicator"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/dp_18"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            style="@style/ContentTextStyle"
+            android:text="@string/language_setting"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_12"
+    >
+
+        <TextView
+                android:id="@+id/tvLabelLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/language"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        <RadioGroup
+                android:id="@+id/rgLanguage"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                app:layout_constraintTop_toBottomOf="@id/tvLabelLanguage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+        >
+            <RadioButton
+                    android:id="@+id/rbEnglish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/english"
+            />
+
+            <RadioButton
+                    android:id="@+id/rbIndonesia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/indonesia"
+                    android:layout_marginTop="@dimen/dp_12"
+            />
+
+        </RadioGroup>
+
+        <View
+                android:id="@+id/viewLine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/greyish"
+                app:layout_constraintTop_toBottomOf="@id/rgLanguage"
+                android:layout_marginTop="@dimen/dp_8"
+            />
+
+        <TextView
+                android:id="@+id/tvLabelAlarmRelease"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/release_reminder"
+                android:layout_marginTop="@dimen/dp_8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewLine"
+                />
+
+        <RadioGroup
+                android:id="@+id/rgReleaseReminder"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                app:layout_constraintTop_toBottomOf="@id/tvLabelAlarmRelease"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                >
+            <RadioButton
+                    android:id="@+id/rbOnReleaseReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/on"
+                    />
+
+            <RadioButton
+                    android:id="@+id/rbOffReleaseReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/off"
+                    android:layout_marginTop="@dimen/dp_12"
+                    />
+
+        </RadioGroup>
+
+        <TextView
+                android:id="@+id/tvLabelAlarmDaily"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/daily_reminder"
+                android:layout_marginTop="@dimen/dp_12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rgReleaseReminder"
+                />
+
+        <RadioGroup
+                android:id="@+id/rgDailyReminder"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                app:layout_constraintTop_toBottomOf="@id/tvLabelAlarmDaily"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                >
+            <RadioButton
+                    android:id="@+id/rbOnDailyReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/on"
+                    />
+
+            <RadioButton
+                    android:id="@+id/rbOffDailyReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/off"
+                    android:layout_marginTop="@dimen/dp_12"
+                    />
+
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

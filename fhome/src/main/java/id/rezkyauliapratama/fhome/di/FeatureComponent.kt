@@ -5,6 +5,7 @@ import id.innovation.libcore.di.CoreComponent
 import id.innovation.libcore.di.annotation.FeatureScope
 import id.innovation.libcore.di.module.PresenterModule
 import id.innovation.libcore.di.module.ViewModelFactoryModule
+import id.rezkyauliapratama.dicodingmade.di.RepositoryModule
 import id.rezkyauliapratama.fhome.ui.HomeActivity
 import id.rezkyauliapratama.fhome.ui.HomeFragment
 import id.rezkyauliapratama.fhome.ui.bottomsheet.SettingBottomSheetDialog
@@ -17,8 +18,8 @@ import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
 
 @Component(
     modules = [
-        PresenterModule::class, RepositoryModule::class,
-        ViewModelFactoryModule::class, ViewModelModule::class
+        PresenterModule::class, AlarmRepositoryModule::class,
+        ViewModelFactoryModule::class, ViewModelModule::class, AlarmRepositoryModule::class, RepositoryModule::class
     ],
     dependencies = [CoreComponent::class]
 )

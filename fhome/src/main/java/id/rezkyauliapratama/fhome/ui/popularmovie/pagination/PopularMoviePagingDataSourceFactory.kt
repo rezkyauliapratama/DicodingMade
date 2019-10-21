@@ -2,9 +2,9 @@ package id.rezkyauliapratama.fhome.ui.popularmovie.pagination
 
 import androidx.paging.DataSource
 import id.innovation.libcore.ui.viewmodels.SingleLiveEvent
-import id.rezkyauliapratama.fhome.domain.usecase.PopularMovieSearchUseCase
-import id.rezkyauliapratama.fhome.domain.usecase.PopularMovieUsecase
-import id.rezkyauliapratama.fhome.ui.entity.PopularMovieResult
+import id.rezkyauliapratama.dicodingmade.domain.usecase.PopularMovieSearchUseCase
+import id.rezkyauliapratama.dicodingmade.domain.usecase.PopularMovieUsecase
+import id.rezkyauliapratama.dicodingmade.presenter.entity.PopularMovieResult
 import io.reactivex.disposables.CompositeDisposable
 
 class PopularMoviePagingDataSourceFactory(

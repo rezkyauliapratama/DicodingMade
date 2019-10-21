@@ -6,9 +6,9 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import id.innovation.libcore.ui.presenterstate.Resource
 import id.innovation.libcore.ui.viewmodels.BaseViewModel
-import id.rezkyauliapratama.fhome.domain.usecase.TvShowSearchUseCase
-import id.rezkyauliapratama.fhome.domain.usecase.TvShowUsecase
-import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
+import id.rezkyauliapratama.dicodingmade.domain.usecase.TvShowSearchUseCase
+import id.rezkyauliapratama.dicodingmade.domain.usecase.TvShowUsecase
+import id.rezkyauliapratama.dicodingmade.presenter.entity.TvShowResult
 import id.rezkyauliapratama.fhome.ui.tvshow.pagination.TvShowPagingDataSource
 import id.rezkyauliapratama.fhome.ui.tvshow.pagination.TvShowPagingDataSourceFactory
 import timber.log.Timber

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import id.innovation.libcore.ui.common.inflate
 import id.innovation.libuicomponent.common.extension.loadImage
 import id.rezkyauliapratama.fhome.R
-import id.rezkyauliapratama.fhome.ui.entity.TvShowResult
+import id.rezkyauliapratama.dicodingmade.presenter.entity.TvShowResult
 import id.rezkyauliapratama.fhome.ui.tvshow.adapter.entity.RowTvShowResult
 import kotlinx.android.synthetic.main.list_item_movie.view.*
 import javax.inject.Inject
