@@ -36,4 +36,15 @@
     <string name="footer_message">Tidak terdapat data</string>
     <string name="home_tab_favorite">Favorit</string>
 
+    <string name="empty_text">Tidak ada data</string>
+    <string name="favorite_movie">Film Favorit</string>
+    <string name="Reminder">Pengingat</string>
+    <string name="reminder_movie">Pengingat Film</string>
+    <string name="today_release">Rilis hari ini</string>
+    <string name="has_been_release_today">Telah rilis hari ini !</string>
+    <string name="language">Bahasa</string>
+    <string name="release_reminder">Pengingat rilis</string>
+    <string name="on">Nyala</string>
+    <string name="off">Mati</string>
+    <string name="daily_reminder">Pengingat kembali ke aplikasi</string>
 </resources>
