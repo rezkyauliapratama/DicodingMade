@@ -11,7 +11,6 @@ import id.innovation.libcore.ui.controllers.BaseViewModelFragment
 import id.rezkyauliapratama.fhome.R
 import id.rezkyauliapratama.fhome.di.DaggerFeatureComponent
 import id.rezkyauliapratama.fhome.ui.bottomsheet.SettingBottomSheetDialog
-import id.rezkyauliapratama.fhome.ui.favorite.FavoriteFragment
 import id.rezkyauliapratama.fhome.ui.pager.HomePagerAdapter
 import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
 import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
@@ -38,7 +37,6 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
         HomePagerAdapter(childFragmentManager).apply {
             addFragment(PopularMovieFragment(), getString(R2.string.home_tab_movie))
             addFragment(TvShowFragment(), getString(R2.string.home_tab_tv_show))
-            addFragment(FavoriteFragment(), getString(R2.string.home_tab_favorite))
         }
     }
 
@@ -77,11 +75,6 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
                     setSearchView(1)
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.nav_tab_favorite -> {
-                    vpContainer.setCurrentItem(2, false)
-                    setSearchView(2)
-                    return@setOnNavigationItemSelectedListener true
-                }
             }
             false
         }
@@ -115,9 +108,6 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
             }
             2 -> {
                 viewModel.setSearchView(View.VISIBLE)
-            }
-            3 -> {
-                viewModel.setSearchView(View.GONE)
             }
         }
     }

@@ -9,9 +9,6 @@ import id.rezkyauliapratama.dicodingmade.di.RepositoryModule
 import id.rezkyauliapratama.fhome.ui.HomeActivity
 import id.rezkyauliapratama.fhome.ui.HomeFragment
 import id.rezkyauliapratama.fhome.ui.bottomsheet.SettingBottomSheetDialog
-import id.rezkyauliapratama.fhome.ui.favorite.FavoriteFragment
-import id.rezkyauliapratama.fhome.ui.favorite.movie.FavoriteMovieFragment
-import id.rezkyauliapratama.fhome.ui.favorite.tvshow.FavoriteTvShowFragment
 import id.rezkyauliapratama.fhome.ui.popularmovie.PopularMovieFragment
 import id.rezkyauliapratama.fhome.ui.tvshow.TvShowFragment
 
@@ -38,8 +35,5 @@ interface FeatureComponent {
     fun inject(homeFragment: HomeFragment)
     fun inject(tvShowFragment: TvShowFragment)
     fun inject(settingBottomSheetDialog: SettingBottomSheetDialog)
-    fun inject(favoriteFragment: FavoriteFragment)
-    fun inject(favoriteTvShowFragment: FavoriteTvShowFragment)
-    fun inject(favoriteMovieFragment: FavoriteMovieFragment)
 
 }
