@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/common/libnetwork" />
             <option value="$PROJECT_DIR$/common/libsharedata" />
             <option value="$PROJECT_DIR$/common/libuicomponent" />
+            <option value="$PROJECT_DIR$/favoriteapp" />
             <option value="$PROJECT_DIR$/fdetailmovie" />
             <option value="$PROJECT_DIR$/fhome" />
           </set>

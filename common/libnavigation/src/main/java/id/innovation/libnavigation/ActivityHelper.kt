@@ -32,7 +32,7 @@ private const val PACKAGE_NAME = "id.rezkyauliapratama"
  */
 fun intentTo(context: Context, addressableActivity: AddressableActivity): Intent {
     return Intent(Intent.ACTION_VIEW).setClassName(
-        context.packageName,
+        "id.rezkyauliapratama.dicodingmade",
         addressableActivity.className
     )
 }

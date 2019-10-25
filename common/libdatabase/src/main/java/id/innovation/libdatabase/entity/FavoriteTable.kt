@@ -1,9 +1,12 @@
 package id.innovation.libdatabase.entity
 
+import android.database.Cursor
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
+import id.innovation.libdatabase.entity.FavoriteTable.Companion.Column.ITEM_ID
+import id.innovation.libdatabase.entity.FavoriteTable.Companion.Column.ITEM_TYPE
 import id.innovation.libdatabase.entity.FavoriteTable.Companion.TABLE_NAME
 import java.io.Serializable
 
@@ -47,4 +50,11 @@ class StatusConverter : Serializable {
 enum class FavoriteType constructor(val code: Int) {
     MOVIE(0),
     TV_SHOW(1)
+}
+
+fun Cursor.assign(): FavoriteTable {
+    return FavoriteTable(
+        getString(getColumnIndex(ITEM_ID)),
+        if (getInt(getColumnIndex(ITEM_TYPE)) == 0) FavoriteType.MOVIE else FavoriteType.TV_SHOW
+    )
 }

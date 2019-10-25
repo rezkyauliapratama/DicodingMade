@@ -1,3 +1,4 @@
+include ':favoriteapp'
 include Modules.featureHome
 include Modules.featureDetailMovie
 

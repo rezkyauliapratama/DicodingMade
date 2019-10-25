@@ -5,7 +5,6 @@ ext.flavorConfig = {
     productFlavors {
         mock {
             dimension "environment"
-            applicationIdSuffix ".mock"
             resValue "string", "app_name", "DicodingMade(MOCK)"
             //for testing only
             buildConfigField 'String', 'API_KEY', '"b77a9c9af1b4434dcbbacdde72879e7c"'
@@ -18,7 +17,6 @@ ext.flavorConfig = {
 
         development {
             dimension "environment"
-            applicationIdSuffix ".dev"
             resValue "string", "app_name", "DicodingMade(DEV)"
             //for testing only
             buildConfigField 'String', 'API_KEY', '"b77a9c9af1b4434dcbbacdde72879e7c"'

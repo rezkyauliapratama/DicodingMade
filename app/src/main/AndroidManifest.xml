@@ -3,6 +3,8 @@
           package="id.rezkyauliapratama.dicodingmade">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <permission android:name="id.rezkyauliapratama.dicodingmade.READ_DATABASE" android:protectionLevel="normal" />
+    <permission android:name="id.rezkyauliapratama.dicodingmade.WRITE_DATABASE" android:protectionLevel="normal" />
 
     <application
             android:name="id.rezkyauliapratama.dicodingmade.App"
@@ -52,6 +54,15 @@
                 android:enabled="true"
                 android:exported="false"
                 android:process=":remote" />
+
+        <!-- Our ContentProvider -->
+        <provider
+                android:name="id.innovation.libcore.contentprovider.ContentProviderHelper"
+                android:authorities= "id.rezkyauliapratama.dicodingmade"
+                android:exported="true"
+                android:enabled="true"
+                android:readPermission="id.rezkyauliapratama.dicodingmade.READ_DATABASE"
+                android:writePermission="id.rezkyauliapratama.dicodingmade.WRITE_DATABASE"/>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package id.innovation.libdatabase.dao
 
+import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Query
 import id.innovation.libdatabase.common.BaseDao
@@ -27,6 +28,9 @@ interface FavoriteDao : BaseDao<FavoriteTable> {
 
     @Query("DELETE FROM $TABLE_NAME where $ITEM_ID = :itemId")
     fun deleteById(itemId: String): Completable
+
+    @Query("SELECT * FROM $TABLE_NAME WHERE $ITEM_TYPE = :itemType")
+    fun getCursorAll(itemType: Int): Cursor?
 
 }
 

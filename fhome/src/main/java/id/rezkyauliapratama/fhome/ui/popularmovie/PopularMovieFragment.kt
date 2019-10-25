@@ -98,6 +98,7 @@ class PopularMovieFragment : BaseViewModelFragment<PopularMovieViewModel>() {
     }
 
     private fun onItemClick(movieId: Int) {
+        Timber.e("package name : ${requireContext().packageName}")
         val intent = intentTo(
             requireContext(),
             addressableActivity = Activities.DetailMovie
