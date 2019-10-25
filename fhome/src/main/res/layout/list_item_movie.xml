@@ -25,7 +25,6 @@
                 app:layout_constraintTop_toTopOf="parent">
 
             <View
-                    android:id="@+id/thumbnail"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/medium_height_iv"
                     android:background="@color/greyish" />
@@ -45,7 +44,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
-                android:id="@+id/backgroundLayout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/medium_height_iv"
                 android:background="@drawable/gradients_vertical_transparent_black"
