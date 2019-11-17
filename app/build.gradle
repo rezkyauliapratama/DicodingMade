@@ -74,4 +74,12 @@ dependencies {
 
     //Logger
     implementation Log.timber
+
+    //unit test
+    testImplementation UnitTest.mockitoCore
+    testImplementation UnitTest.mockitoInline
+    testImplementation UnitTest.coreTesting
+    testImplementation UnitTest.mockitoKotlin
+    testImplementation UnitTest.kotlinTest
 }
+

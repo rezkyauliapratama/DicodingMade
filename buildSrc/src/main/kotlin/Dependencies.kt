@@ -55,6 +55,14 @@ object Version {
     const val testRunnerVersion = "1.1.1"
     const val junitVersion = "4.12"
 
+    //unit test
+    const val mockitoVersion = "2.21.0"
+    const val mockitoInlineVersion = "2.19.0"
+    const val coreTestingVersion = "1.1.1"
+    const val mockitoKotlinVersion = "2.1.0"
+    const val daggerMockVersion = "0.8.5"
+    const val kotlinTestVersion = "3.3.2"
+
     //findBugAnnotation
     const val findBugsVersion = "3.0.2"
 
@@ -125,6 +133,15 @@ object Dagger {
 object TestLibs {
     val junit = "junit:junit:${Version.junitVersion}"
     val testRunner = "androidx.test:runner:${Version.testRunnerVersion}"
+}
+
+object UnitTest {
+    val mockitoCore = "org.mockito:mockito-core:${Version.mockitoVersion}"
+    val mockitoInline = "org.mockito:mockito-inline:${Version.mockitoInlineVersion}"
+    val coreTesting = "android.arch.core:core-testing:${Version.coreTestingVersion}"
+    val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Version.mockitoKotlinVersion}"
+    val daggerMock = "com.github.fabioCollini.daggermock:daggermock-kotlin:${Version.daggerMockVersion}"
+    val kotlinTest = "io.kotlintest:kotlintest-runner-junit5:${Version.kotlinTestVersion}"
 }
 
 object Annotation {

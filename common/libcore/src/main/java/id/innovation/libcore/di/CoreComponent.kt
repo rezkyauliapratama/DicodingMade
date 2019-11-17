@@ -5,6 +5,7 @@ import com.squareup.moshi.Moshi
 import dagger.Component
 import id.innovation.libcore.data.locale.LocaleManager
 import id.innovation.libcore.domain.executors.PostExecutionThread
+import id.innovation.libcore.domain.executors.PreExecutionThread
 import id.innovation.libcore.domain.executors.ThreadExecutor
 import id.innovation.libnetwork.common.NetworkErrorInterface
 import id.innovation.libnetwork.di.NetworkModule
@@ -15,7 +16,7 @@ import javax.inject.Singleton
 @Singleton
 interface CoreComponent {
     fun getBaseResponse(): NetworkErrorInterface
-    fun getThreadExecutor(): ThreadExecutor
+    fun getPreExecutionThread(): PreExecutionThread
     fun getPostExecutionThread(): PostExecutionThread
     fun getRetrofit(): Retrofit
     fun getMoshi(): Moshi
