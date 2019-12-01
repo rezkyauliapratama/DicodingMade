@@ -11,8 +11,7 @@ android {
     defaultConfig {
         minSdkVersion Release.minSdkVersion
         targetSdkVersion Release.targetSdkVersion
-        versionCode Release.versionCode
-        versionName Release.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     with flavorConfig

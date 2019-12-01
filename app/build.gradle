@@ -28,6 +28,7 @@ android {
         }
     }
 
+
     dynamicFeatures = [Modules.featureHome, Modules.featureDetailMovie]
 
     with flavorConfig
@@ -68,10 +69,6 @@ dependencies {
     implementation Dagger.dagger
     kapt Dagger.daggerCompiler
 
-    //unittest
-    testImplementation TestLibs.junit
-    androidTestImplementation TestLibs.testRunner
-
     //Logger
     implementation Log.timber
 
@@ -81,5 +78,18 @@ dependencies {
     testImplementation UnitTest.coreTesting
     testImplementation UnitTest.mockitoKotlin
     testImplementation UnitTest.kotlinTest
+
+    //intrument test
+    androidTestImplementation TestLibs.junit
+    androidTestImplementation TestLibs.testRunner
+    androidTestImplementation TestLibs.testRules
+    androidTestImplementation TestLibs.espresso
+    androidTestImplementation TestLibs.fragmentTestVersion
+    // When using API in base, some dependencies might have to be re-added for test implementation.
+    androidTestImplementation Support.appCompat
+}
+
+repositories {
+    google()
 }
 

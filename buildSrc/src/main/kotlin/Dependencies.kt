@@ -43,7 +43,7 @@ object Version {
     const val okhttpLoggingVersion = "3.11.0"
 
     //Android jetpack
-    const val appcompatVersion = "1.1.0-alpha05"
+    const val appcompatVersion = "1.1.0"
     const val constraintLayoutVersion = "2.0.0-alpha5"
     const val navigationVersion = "1.0.0"
     const val lifecycleVersion = "2.0.0"
@@ -53,7 +53,9 @@ object Version {
 
     //test
     const val testRunnerVersion = "1.1.1"
-    const val junitVersion = "4.12"
+    const val junitVersion = "1.1.1"
+    const val espressoCoreVersion = "3.1.0"
+    const val fragmentTestVersion = "1.1.0"
 
     //unit test
     const val mockitoVersion = "2.21.0"
@@ -131,8 +133,12 @@ object Dagger {
 }
 
 object TestLibs {
-    val junit = "junit:junit:${Version.junitVersion}"
+    val junit = "androidx.test.ext:junit:${Version.junitVersion}"
     val testRunner = "androidx.test:runner:${Version.testRunnerVersion}"
+    val testRules = "androidx.test:rules:${Version.testRunnerVersion}"
+    val espresso = "androidx.test.espresso:espresso-core:${Version.espressoCoreVersion}"
+    val fragment = "androidx.fragment:fragment:${Version.fragmentTestVersion}"
+    val fragmentTestVersion = "androidx.fragment:fragment-testing:${Version.fragmentTestVersion}"
 }
 
 object UnitTest {

@@ -1,5 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="id.rezkyauliapratama.fhome">
+        xmlns:dist="http://schemas.android.com/apk/distribution"
+        package="id.rezkyauliapratama.fhome"
+        >
+
+    <dist:module
+            dist:onDemand="true"
+            dist:instant="false"
+            dist:title="@string/title_fhome">
+        <dist:fusing dist:include="true"/>
+    </dist:module>
 
     <application
             android:name="id.rezkyauliapratama.dicodingmade.App">

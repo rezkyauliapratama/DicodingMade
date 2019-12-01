@@ -1,3 +1,4 @@
 <resources>
-    <string name="title_fdetailmovie">Module Title</string>
+    <string name="title_fdetailmovie">Module FdetailMovie</string>
+    <string name="title_fhome">Module Fhome</string>
 </resources>
